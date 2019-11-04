@@ -45,9 +45,7 @@ export class AdminService {
     this.StringUrlchange.emit(this.StringUrl.slice());
   }
 
-  getURLString(){
-    return this.StringUrl
+  getURLString() {
+    return this.StringUrl;
   }
-
-
 }

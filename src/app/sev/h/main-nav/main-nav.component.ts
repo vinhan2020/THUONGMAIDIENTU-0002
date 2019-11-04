@@ -33,7 +33,7 @@ export class MainNavComponent implements OnInit {
   }
 
   backToClient() {
-    document.getElementById("foot").style.display = "flex";
+    document.getElementById("foot").style.display = "block";
   }
 
   listmau: [number, boolean][] = [[0, true], [1, false]];
