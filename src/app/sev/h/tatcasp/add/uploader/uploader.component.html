@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 " style="margin-top: auto;margin-bottom: auto;">Tên</label>
+        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" name="" id="">
+    </div>
+    <div class="row">
+        <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">Giá</label>
+        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" name="" id="">
+    </div>
+    <div class="row">
+        <!-- option -->
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">Loại</label>
+                <select class="col-md-8 col-xs-8 col-sm-8 col-lg-8 col-xl-8 form-control" name="" id="">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+
+        <!-- class="col-md-8 col-xs-8 col-sm-8 col-lg-8 col-xl-8 form-control" -->
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">Hãng</label>
+                <input type="text" class="col-md-8 col-xs-8 col-sm-8 col-lg-8 col-xl-8 form-control" name="" id="">
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <div class="row">
+               
+        <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">Hãng</label>
+        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" name="" id="">
+    </div> -->
+
+    <div class="row">
+        <!-- Size -->
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <input type="file" class="btn btn-light" multiple (change)='onDrop($event.target.files)'>
+        <div *ngFor="let item of files">
+            <app-upload-task [file]='item'></app-upload-task>
+        </div>
+    </div>
+</div>

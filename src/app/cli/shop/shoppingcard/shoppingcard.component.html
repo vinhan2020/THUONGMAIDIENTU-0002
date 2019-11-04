@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Tổng tiền</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of gioHang; let idIteminGioHang =index">
+                    <th scope="row" >
+                        <img [src]="item.Img[0]" class="" height="120px">
+                    </th>
+                    <td >
+                        {{item.Ten}}
+                    </td>
+                    <td>
+                        <div *ngFor="let it of item.SizEvsGiAvsSolGvsTT" style="height: 38px;padding:6px 12px;">
+                            {{it[0]}}
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngFor="let it of item.SizEvsGiAvsSolGvsTT,let idOfDsSize = index" class="row">
+                            <input type="number" value="{{it[1]}}" class="form-control" style="width: 120px;"
+                                (change)='OnPlusMinusClick(idIteminGioHang,idOfDsSize,$event)' min="1" id="inputValField"/>
+                        </div>
+
+                    </td>
+                    <td style="width: 150px;">
+                        <div *ngFor="let it of item.SizEvsGiAvsSolGvsTT"
+                            style="height: 38px;border-bottom: 1px solid black;padding:6px 12px">
+                            {{it[2]}}
+                        </div>
+                    </td>
+                    <td style="width: 150px;">
+                        <div style="border-bottom: black 1px solid;height: 38px;padding:6px 12px;">
+                            {{listGia[idIteminGioHang]}}
+                        </div>
+                    </td>
+
+                </tr>
+                <!-- <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+        <label class="col-md-3">Tên</label>
+        <input type="text" name="" id="" class="form-control col-md-9" [(ngModel)]="ten">
+    </div>
+    <div class="row">
+        <label class="col-md-3">Giá</label>
+        <input type="text" name="" id="" class="form-control col-md-9" [(ngModel)]="gia">
+    </div>
+    <div class="row">
+        <label class="col-md-3">Hình chính</label>
+        <input type="text" name="" id="" class="form-control col-md-9" [(ngModel)]="hinhchinh">
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+
+                <div class="col-md-12" *ngFor="let item of hinh,let i = index">
+                    <div class="row">
+                        <label class="col-md-2">hình phụ</label>
+                        <textarea [value]="item" class="col-md-8 form-control" 
+                        (change)="hinhphuchange(i,$event)"  rows="3"></textarea>
+                        
+                    </div>
+                </div>
+                <a class="btn btn-warning col-md-2" (click)="conghinh()">+</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-3">Mô tả</label>
+        <input type="text" class="form-control col-md-9" [(ngModel)]="mota">
+    </div>
+    <div class="row">
+        <label class="col-md-3">Size</label>
+        <div class="col-md-9">
+            <div class="row">
+                <input class="col-md-2 form-control" type="number" *ngFor="let item of size,let i =index"
+                    (change)='onChangeSize(i,$event)'>
+                <a class="btn btn-success col-md-2" (click)="onSizePLus()">+</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-primary col-md-3" (click)="onAddClick()">Add</a>
+    </div>
+
+    <div class="row">
+        <img [src]="hinhchinh" alt="">
+        <img [src]="item" *ngFor="let item of hinh"/>
+    </div>
+</div> -->
+
+
+<app-uploader></app-uploader>
+
+
+

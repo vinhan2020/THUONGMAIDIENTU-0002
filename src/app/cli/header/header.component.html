@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light " id="NavigateBar">
+
+  <a class="navbar-brand" (click)="onHomeClick()">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="openButton">
+    <i class="navbar-toggler-icon"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item ">
+        <a class="nav-link btn btn-light" routerLinkActive="active" (click)="onHomeClick()" routerLink="TrangChu">Home </a>
+      </li>
+
+      <li class="nav-item dropdown" >
+        <a class="dropbtn nav-link btn btn-light" routerLinkActive="active" (click)="onHomeClick()" routerLink="/Shop">Shop</a>
+
+      </li>
+      <li class="nav-item dropdown" >
+        <a class="dropbtn nav-link btn btn-light" (click)="onHomeClick()" routerLinkActive="active" routerLink="/Blog">Blog</a>
+
+      </li>
+      <li class="nav-item dropdown" >
+        <a class="dropbtn nav-link btn btn-light" (click)="onHomeClick()" routerLinkActive="active" routerLink="/Contact">Contact</a>
+        <div class="dropdown-content">
+          <a routerLink="sanpham/tra">Link 1</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item ">
+        <a (click)="onHomeClick()" routerLink="ShoppingCard" routerLinkActive="active" class="btn btn-light  nav-link"> 
+          <i class="fas fa-shopping-cart">
+            <span class="badge badge-light">
+              {{gioHang.length}}
+            </span>
+          </i>
+        </a>
+      </li>
+
+      <li class="dropdown nav-item">
+        <a class="dropbtn nav-link btn btn-light ">Welcome, <span
+            style="font: italic bold 12px/30px Georgia, serif;">{{admin.User.Ten}}</span>
+        </a>
+
+        <div class="dropdown-content">
+          <a *ngIf="admin.User.IsLogIn != true" style="cursor: pointer" routerLink='Signin'>SignIn</a>
+          <a *ngIf="admin.User.IsLogIn == true" style="cursor: pointer">User</a>
+          <a *ngIf="admin.User.IsLogIn == true && admin.User.Role =='Admin'" routerLink='Admin' (click)="onAdminClick()"
+            style="cursor: pointer">Admin</a>
+          <a *ngIf="admin.User.IsLogIn == true" style="cursor: pointer" (click)="onLogOut()">Log out</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>

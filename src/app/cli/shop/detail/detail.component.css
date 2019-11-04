@@ -1,0 +1,13 @@
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+.btn{
+    background-color: #ca7379
+}
+.textCard{
+    font-size: 40px; text-align: center;
+    margin-top: 20px;margin-bottom: 20px
+}
+.btn-grad {background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)}
+.btn-grad:hover { background-position: right center; }

@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        
+        <!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div *ngIf="percentage | async as pct">
+                <progress [value]="pct" max="100"></progress>
+                {{ pct | number }}%
+            </div>
+        </div> -->
+
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <div *ngIf="snapshot | async as snap">
+                <div *ngIf="downloadURL as url">
+                    
+                    <!-- <img [src]="url" width="250" height="250"><br> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

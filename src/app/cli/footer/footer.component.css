@@ -1,0 +1,16 @@
+h3{
+    border-bottom: 1px solid #25282c;
+    color: #25282c;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin: 10px 0 20px;
+    padding-bottom: 7px;
+    text-transform: uppercase;
+    font-weight: normal
+}
+.address{
+    color: #202020;
+    line-height: 2;
+ }
+ 
