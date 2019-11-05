@@ -127,4 +127,8 @@ export class SanphamService {
     this.GioHang = giohang;
     this.GioHangChange.emit(this.GioHang.slice());
   }
+  XoaSanPhamGioHang(i: number){
+    this.GioHang.splice(i,1);
+    this.GioHangChange.emit(this.GioHang.slice());
+  }
 }

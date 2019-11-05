@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-shoppingcard",
@@ -8,13 +9,15 @@ import { Dep } from "src/app/service-model/dep";
   styleUrls: ["./shoppingcard.component.css"]
 })
 export class ShoppingcardComponent implements OnInit {
-  constructor(private sanphamService: SanphamService) {}
+  constructor(private sanphamService: SanphamService,
+              private router: Router) {};
+              
 
   gioHang: Dep[];
   listGia: number[] = [];
   GiaTemp: number = 0;
   Sub;
-
+id;
   ngOnInit() {
     this.gioHang = this.sanphamService.GetGioHang();
 
@@ -80,5 +83,9 @@ export class ShoppingcardComponent implements OnInit {
 
   onValueChange(event) {
     console.log(event.target.value);
+  }
+  xoaSPGioHang(){
+    this.sanphamService.XoaSanPhamGioHang(this.id)
+    this.router.navigate(["/ShoppingCard"])
   }
 }

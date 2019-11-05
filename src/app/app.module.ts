@@ -5,10 +5,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {
   MatButtonModule,
   MatSidenavModule,
-  MatButtonToggleModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-  MatToolbarModule,
+   MatIconModule,
+   MatToolbarModule,
   MatCheckboxModule
 } from "@angular/material";
 
@@ -47,7 +45,8 @@ import { AddComponent } from './sev/h/tatcasp/add/add.component';
 import { DropzoneDirective } from './sev/h/tatcasp/add/dropzone.directive';
 import { UploaderComponent } from './sev/h/tatcasp/add/uploader/uploader.component';
 import { UploadTaskComponent } from './sev/h/tatcasp/add/upload-task/upload-task.component';
-
+import { PaymentComponent } from './cli/shop/payment/payment.component';
+  
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -83,7 +82,8 @@ const firebaseConfig = {
     DropzoneDirective,
     UploaderComponent,
     UploadTaskComponent,
-  ],
+    PaymentComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -9,6 +9,7 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tổng tiền</th>
+                    <th scope="col"></th>
 
                 </tr>
             </thead>
@@ -43,6 +44,9 @@
                             {{listGia[idIteminGioHang]}}
                         </div>
                     </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="xoaSPGioHang()">x</button>
+                    </td>
 
                 </tr>
                 <!-- <tr>
@@ -53,6 +57,13 @@
 
                 </tr> -->
             </tbody>
+            
+            
         </table>
+        <div class="row">
+            <button routerLink="/ShoppingCard/Payment" class="btn btn-info">
+                Thanh toán
+            </button>
+        </div>
     </div>
 </div>
