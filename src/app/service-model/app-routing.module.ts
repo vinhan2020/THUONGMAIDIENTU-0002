@@ -12,7 +12,8 @@ import { DetailComponent } from "../cli/shop/detail/detail.component";
 import { ShoppingcardComponent } from "../cli/shop/shoppingcard/shoppingcard.component";
 import { TatcaspComponent } from "../sev/h/tatcasp/tatcasp.component";
 import { AddComponent } from "../sev/h/tatcasp/add/add.component";
-
+import { PaymentComponent } from '../cli/shop/payment/payment.component';
+ 
 const routes: Routes = [
   { path: "", redirectTo: "/TrangChu", pathMatch: "full" },
   { path: "TrangChu", component: HomeComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: "Shop/Detail/:id", component: DetailComponent },
   { path: "TrangChu/Detail/:id", component: DetailComponent },
   { path: "ShoppingCard", component: ShoppingcardComponent },
-  {
+  { path: "ShoppingCard/Payment", component: PaymentComponent},
+   {
     path: "Admin",
     component: HComponent,
     children: [
