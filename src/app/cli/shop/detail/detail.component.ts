@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Dep } from "src/app/service-model/dep";
-import { Alert } from "selenium-webdriver";
-
 @Component({
   selector: "app-detail",
   templateUrl: "./detail.component.html",
@@ -65,5 +63,6 @@ export class DetailComponent implements OnInit {
       this.sp.Hang
     );
     this.sanphamService.AddtoGioHang(y);
+    alert("Success")
   }
 }

@@ -1,10 +1,9 @@
 
 <div class="container" style="margin: 40px 40px;">
     <div class="row"> 
-        <div class="col-md-6" >
-            <div class="pay-left">
-                <div class="container">
-                    <h1>Shop bán dép xinh đẹp</h1>
+        <div class="col-md-7" >
+                 <div class="container">
+                    <h2 style="text-align: center;">Shop bán dép xinh đẹp</h2>
                     <hr>
                 </div>
                 <div class="form-custommer">
@@ -21,7 +20,7 @@
                     <input type="text" class="form-control" placeholder="Địa chỉ" >
                     <div class="row">
                         <div class="col-md-6">
-                                <select class="abc form-control">
+                                <select  class="abc form-control">
                                         <option>Tỉnh/ Thành</option>
                                         <option value="nam">HCM</option>
                                         <option value="bac">HN</option>
@@ -36,16 +35,65 @@
                         </div>
                     </div>
                 </div>
-                <div class="okpay" style="margin-left: 7px;">
-                    <a routerLink="/ShoppingCard"> << Giỏ hàng</a>
+                <div class="okpay" >
+                    <button class="btn btn-dark" routerLink="/ShoppingCard" style="margin-top: 7px"> << Giỏ hàng</button>
                     <button style=" margin-top: 7px; float: right;" class="btn btn-dark">Chọn phương thức thanh toán</button>
                 </div>
+         </div> 
+        <div class="col-md-5" style="padding-left: 100px;"  >
+                 <h2>Thông tin sản phẩm </h2>
+
+                <div class="container">
+                    <div class="row">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                        <th>Hình</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Số Lượng</th>
+                                        <th>Giá</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table table-striped">
+                                        <tr *ngFor="let item of gioHang; let idIteminGioHang =index">
+                                                <td scope="row" >
+                                                    <img [src]="item.Img[0]" class="" height="120px">
+                                                </td>
+                                                <td class="col-md-2" >
+                                                    {{item.Ten}}
+                                                </td> 
+                                                <td>{{item.SizEvsGiAvsSolGvsTT[0][1]}}</td>
+                                                 <td class="col-md-2"> {{item.Gia}}</td>
+                                            </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="row" >
+                       
+                           
+                    </div>
              </div>
-        </div> 
-        <div class="col-md-6"  >
-            <div class="pay-right" >
-                <h1>Thông tin sản phẩm </h1>
-            </div>
+             <hr>
+             <div class="container">
+                 <div class="row">
+                     <div class="col-md-7">
+                             <h6>Chi phí vận chuyển</h6>
+                      </div>
+                    <div class="col-md-5">
+                            <h6>50.000 VNĐ</h6>
+                    </div>
+                    </div>
+             </div>
+             <hr>
+             
+             <div class="container">
+                <div class="row"  >
+                    <div class="col-md-7">Tổng Tiền:</div>
+                    <div class="col-md-5">{{TongTien}}</div>
+                    
+                </div>
+                 
+             </div>
         </div> 
     </div>
 </div>

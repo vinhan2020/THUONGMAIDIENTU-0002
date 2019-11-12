@@ -33,7 +33,7 @@ id;
           this.listGia.push(this.GiaTemp);
           this.GiaTemp = 0;
         });
-      });
+       });
     }
 
     {
@@ -45,8 +45,9 @@ id;
 
         this.listGia.push(this.GiaTemp);
         this.GiaTemp = 0;
+        
       });
-    }
+     }
   }
 
   OnPlusClick(indexGioHang, indexOfDsSize) {
@@ -85,7 +86,14 @@ id;
     console.log(event.target.value);
   }
   xoaSPGioHang(){
-    this.sanphamService.XoaSanPhamGioHang(this.id)
-    this.router.navigate(["/ShoppingCard"])
+    if(confirm("Are you want delete this product"))
+    { this.sanphamService.XoaSanPhamGioHang(this.id)
+      this.router.navigate(["/ShoppingCard"])
+
+    }
+    else{
+      this.router.navigate(["/ShoppingCard"])
+
+    }
   }
 }
