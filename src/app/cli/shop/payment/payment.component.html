@@ -6,6 +6,7 @@
                 <div class="container">
                     <h1>Shop bán dép xinh đẹp</h1>
                     <hr>
+                    <p>Bạn đã có tài khoản ? Đăng kí</p>
                 </div>
                 <div class="form-custommer">
                     <input type="text" class="form-control" placeholder="Họ và tên">
@@ -45,6 +46,19 @@
         <div class="col-md-6"  >
             <div class="pay-right" >
                 <h1>Thông tin sản phẩm </h1>
+                <hr>
+                <div class="container">
+                    <div class="row" >
+                            <tr *ngFor="let item of gioHang; let idIteminGioHang =index">
+                                    <th scope="row" >
+                                        <img [src]="item.Img[0]" class="" height="120px">
+                                    </th>
+                                    <td class="col-md-2" >
+                                        {{item.Ten}}
+                                    </td> 
+                                </tr>
+                    </div>
+                </div>
             </div>
         </div> 
     </div>

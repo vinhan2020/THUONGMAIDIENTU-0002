@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SanphamService } from 'src/app/service-model/sanpham.service';
+import { Dep } from 'src/app/service-model/dep';
 
 @Component({
   selector: 'app-payment',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sanphamService: SanphamService) {}
+
+  gioHang: Dep[];
+
+  
 
   ngOnInit() {
+    this.gioHang = this.sanphamService.GetGioHang();
   }
 
 }
