@@ -13,12 +13,14 @@
 
                 <!-- The slideshow -->
                 <div class="carousel-inner">
+                    
                     <div class="carousel-item active">
-                        <img src="{{sp.Img[1]}}" alt="Adidas" width="1100" height="500">
+                        <img src="{{hinhchinh}}" alt="Adidas" width="1100" height="500">
                     </div>
-                    <div class="carousel-item" *ngFor="let item of sp.Img">
+                    <div class="carousel-item" *ngFor="let item of sp.Img,let i = index">
                         <img [src]="item" alt="Adidas" width="1100" height="500">
                     </div>
+                    ngif
                     
                 </div>
 

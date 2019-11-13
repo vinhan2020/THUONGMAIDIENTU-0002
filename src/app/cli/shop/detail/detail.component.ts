@@ -10,6 +10,8 @@ import { Dep } from "src/app/service-model/dep";
 export class DetailComponent implements OnInit {
   sp: Dep;
   id: number;
+  hinhchinh : string
+  hinhphu:string[]
   listSize: [number, number, number][] = [];
   constructor(
     private sanphamService: SanphamService,
@@ -21,6 +23,8 @@ export class DetailComponent implements OnInit {
       this.id = +params["id"];
       this.sp = this.sanphamService.getSanPhambyID(this.id);
     });
+    this.hinhchinh = this.sp.Img[0]
+    this.sp.Img.splice(0,1)
   }
   onSizeClick(i: number) {
     var m = 0;
@@ -63,6 +67,6 @@ export class DetailComponent implements OnInit {
       this.sp.Hang
     );
     this.sanphamService.AddtoGioHang(y);
-    alert("Success")
+    alert("Success");
   }
 }
