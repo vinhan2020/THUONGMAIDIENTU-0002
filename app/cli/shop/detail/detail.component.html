@@ -1,0 +1,75 @@
+<div class="container">
+    <p style="font-size: 40px; text-align: center">WELCOME TO MY SHOP</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <!-- <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul> -->
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    
+                    <div class="carousel-item active">
+                        <img src="{{hinhchinh}}" alt="Adidas" width="1100" height="500">
+                    </div>
+                    <div class="carousel-item" *ngFor="let item of sp.Img,let i = index">
+                        <img [src]="item" alt="Adidas" width="1100" height="500">
+                    </div>
+                    ngif
+                    
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="name">
+                <h2>{{sp.Ten}}</h2>
+            </div>
+            <hr>
+            <div class="disc">
+                {{sp.MoTa}}
+            </div>
+            <hr>
+            <div class="row">
+                <h5>Size</h5>
+                <div *ngFor="let item of sp.SizEvsGiAvsSolGvsTT; let i=index">
+                    <div class="col-md-2" style="float: left;">
+                        <a class="btn" (click)="onSizeClick(i)" style="width: 50px; text-align: center">
+                            {{item[0]}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="container" *ngFor="let item of listSize; let i=index">
+                <div class="row">
+                    <div class="col-md-1">
+                        <button  class="btn btn-light " style=" width: 50px; text-align: center; margin-bottom: 5px">
+                            <a (click)="onDelete()">{{item[0]}}</a>
+                        </button>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" type="number" value="1" (change)=onChange($event,i)>
+                    </div> 
+                </div>  
+            </div> 
+            <div class="container"> 
+                <a class="btn" (click)="onDatHang()">Thêm vào giỏ hèng</a> 
+            </div>
+            
+        </div>
+    </div>
+</div>

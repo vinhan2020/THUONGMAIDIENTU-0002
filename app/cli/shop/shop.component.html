@@ -1,0 +1,29 @@
+<div class="container" style="margin-top: 50px">
+    <div class="row">
+            <div class="col-md-3 col-sm-6" *ngFor="let item of sanphamService.ListSanPham; let i=index">
+                    <div class="product-grid" style="margin-bottom: 50px">
+                        <div class="product-image">
+                            <a routerLink="Detail/{{i}}" >
+                                <img class="pic-1" src="{{item.Img[0]}}">
+                                <img class="pic-2" src="{{item.Img[1]}}">
+                            </a>
+                             
+                            <span class="product-new-label">Hot Sale</span>
+                         </div>
+                        <ul class="rating">
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star disable"></li>
+                        </ul>
+                        <div class="product-content">
+                            <h3 class="title"><a  >{{ item.Ten}}</a></h3>
+                            <div class="price">{{item.Gia}}
+                             </div>
+                         </div>
+                    </div>
+                </div>
+                
+    </div>
+</div>

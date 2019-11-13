@@ -1,0 +1,172 @@
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="assets/images/binh1.jpg" alt="Banner1" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/images/binh2.jpg" alt="Banner2" width="1100" height="500">
+        </div>
+        <div class="content-slideshow">
+            <img src="assets/daily.png" alt="daily">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+
+<!-- ship, give away, sale-->
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="freeship">
+                <a href="#">
+                    <div class="text-box">
+                        Free Domestic Shipping
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="giveaway">
+                <a href="#">
+                    <div class="text-box">
+                        GiveAway EveryMonth
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sale">
+                <a href="#">
+                    <div class="text-box">
+                        Sale up to 50% off on Friday
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Trendy products-->
+<div class="trendy-products" style="margin-top: 70px">
+    <div class="container">
+        <h3>TRENDY PRODUCTS</h3>
+        <h5>Trending</h5>
+        <div id="carousel-1">
+
+            
+            <!-- <div class="tab-heading">
+                <span>
+                    <mat-tab-group>
+                        <mat-tab label="Futures" class="active">
+                            <div class="container">
+                                <h3 class="h3"></h3>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6"
+                                        *ngFor="let item of sanphamService.ListSanPham; let i=index">
+                                        <div class="product-grid">
+                                            <div class="product-image">
+                                                <a routerLink="Detail/{{i}}">
+                                                    <img class="pic-1" src="{{item.Img[0]}}">
+                                                    <img class="pic-2" src="{{item.Img[1]}}">
+                                                </a>
+
+                                                <span class="product-new-label">Hot Sale</span>
+                                            </div>
+                                            <ul class="rating">
+                                                <li class="fa fa-star"></li>
+                                                <li class="fa fa-star"></li>
+                                                <li class="fa fa-star"></li>
+                                                <li class="fa fa-star"></li>
+                                                <li class="fa fa-star disable"></li>
+                                            </ul>
+                                            <div class="product-content">
+                                                <h3 class="title"><a href="#">{{ item.Ten}}</a></h3>
+                                                <div class="price">{{item.Gia}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <hr>
+                        </mat-tab>
+                    </mat-tab-group>
+                </span>
+            </div> -->
+        </div>
+    </div>
+
+    <app-shop></app-shop>
+
+    <!--End-->
+
+    <!--Review-->
+    <div class="review-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                            <div class="founder"> 
+                                <img src="assets/images/baner-sandel.jpg" alt="Avatar" class="image" style="width:100%">
+                                <div class="middle">
+                                    <h4 style="font-size:20px ">Meet
+                                        <br>
+                                        Hello
+                                    </h4>
+                                    <h3 class="text">Nice To Met You</h3>
+                                </div>
+                            </div>
+                        </div>
+                <div class="col-md-6">
+                    <div class="subcribe-box">
+                        <img src="" alt="">
+                        <h3>Subcribe</h3>
+                        <h5>Send email for us to </h5>
+                        <form action="subcribe.php" method="POST" class="sub-form">
+                            <input type="email" name="email" placeholder="Your email address">
+                            <button type="submit">
+                                Subcribe
+                            </button>
+                        </form>
+                    </div>
+                    <div class="another">
+                        helo
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="saleoff">
+                        <img src="assets/images/baner-sandal2.jpg" alt="Avatar" class="image" style="width:100%">
+                        <div class="middle1">
+                            <h4 style="font-size:40px ">SALE
+                                <br>
+                                OFF
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--End-->
