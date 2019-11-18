@@ -46,7 +46,9 @@ import { DropzoneDirective } from './sev/h/tatcasp/add/dropzone.directive';
 import { UploaderComponent } from './sev/h/tatcasp/add/uploader/uploader.component';
 import { UploadTaskComponent } from './sev/h/tatcasp/add/upload-task/upload-task.component';
 import { PaymentComponent } from './cli/shop/payment/payment.component';
-  
+import { PaypalComponent } from './cli/shop/paypal/paypal.component';
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -83,7 +85,8 @@ const firebaseConfig = {
     UploaderComponent,
     UploadTaskComponent,
     PaymentComponent,
-    ],
+    PaypalComponent
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
