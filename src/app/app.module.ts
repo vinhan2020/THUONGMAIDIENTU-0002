@@ -2,6 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import {
   MatButtonModule,
   MatSidenavModule,
@@ -85,12 +88,14 @@ const firebaseConfig = {
     UploaderComponent,
     UploadTaskComponent,
     PaymentComponent,
-    PaypalComponent
-     ],
+    PaypalComponent,
+    JwPaginationComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,HttpClientModule,
+    NgxPaginationModule,
 
     //firebase 
     AngularFirestoreModule,AngularFireModule.initializeApp(firebaseConfig),AngularFireStorageModule,AngularFireAuthModule,
