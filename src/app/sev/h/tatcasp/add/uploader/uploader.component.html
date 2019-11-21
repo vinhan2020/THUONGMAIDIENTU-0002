@@ -1,43 +1,54 @@
 <div class="container">
     <div class="row">
+        <div class="col-12">
+            <input type="text"  class=" form-control" placeholder="Tên" name="" id="" [(ngModel)]="ten">
+        </div>
         
-        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" placeholder="Tên" name="" id="" [(ngModel)]="ten">
     </div>
     <div class="row">
+        <div class="col-12">
+            <input type="text" class="col-12  form-control" placeholder="50000" name="" id="" [(ngModel)]="gia">
+        </div>
         
-        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" placeholder="50000" name="" id="" [(ngModel)]="gia">
     </div>
     <div class="row">
         <!-- option -->
-
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-6">
             <div class="row">
-                 
-                <select class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-xl-4 form-control" name="" id="" aria-valuenow="Loại..." [(ngModel)]="loai">
-                    <option disabled selected value>Chọn loại</option>
-                    <option >Dép lào</option>
-                    <option >Dép crocs</option>
-                    <option >Dép tổ ong</option>
+                <div class="col-12">
+                    <div class="row" style="padding: 0 15px;">
+                        <select class="col-12 col-md-4 col-sm-6 form-control" aria-valuenow="Loại..." [(ngModel)]="loai">
+                            <option disabled selected value>Loại ...</option>
+                            <option >Dép lào</option>
+                            <option >Dép crocs</option>
+                            <option >Dép tổ ong</option>
+                            <option >Khác</option>
+        
+                        </select>
+                        <input class="col-12 col-md-4 col-sm-6 form-control" *ngIf="loai =='Khác'" placeholder="nhập loại" [(ngModel)]="loaitemp"/>
+                    </div>
 
-                </select>
-
-                
+                </div> 
             </div>
         </div>
 
         <!-- class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-xl-4 form-control" -->
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-6">
             <div class="row">
-                
-                    <select class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-xl-4 form-control" name="" id="" aria-valuenow="Loại..." [(ngModel)]="hang">
-                            <option disabled selected value>Chọn hãng</option>
+                <div class="col-12">
+                    <div class="row" style="padding: 0 15px;">
+                        <select class="col-12 col-md-4 col-sm-6 form-control" aria-valuenow="Loại..." [(ngModel)]="hang">
+                            <option disabled selected value>Hãng ...</option>
                             <option >Nike</option>
                             <option >Adidas</option>
                             <option >Reebok</option>
                             <option >Khác</option>
-                    </select>
-                    <input class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-xl-4 form-control" *ngIf="hang =='Khác'" placeholder="nhập hãng" [(ngModel)]="temp"/>
+                        </select>
+                    <input class="col-12 col-md-4 col-sm-6 form-control" *ngIf="hang =='Khác'" placeholder="nhập hãng" [(ngModel)]="hangtemp"/>
+                    </div>
+                </div>
+                    
             </div>
         </div>
 
@@ -49,34 +60,28 @@
     <!-- <div class="row">
                
         <label for="" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">Hãng</label>
-        <input type="text" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 col-xl-9 form-control" name="" id="">
+        <input type="text" class="col-md-9 col-xs-9   col-xl-9 form-control" name="" id="">
     </div> -->
 
-    <div class="row">
+    <div class="row" style="padding: 0 15px;">
         <!-- Size -->
-        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+        <!-- <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
             Size
-        </label>
-
-        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-            <div class="row">
-                <input *ngFor="let item of sizeSlgTT,let i = index" (keydown)="onEscKey(i,$event)" type="number" class="form-control col-md-2"
-                    min="36" [value]="item[0]" max="44" (change)="onChangeSize($event,i)"/>
-                <a class="btn btn-light  col-md-2 " 
+        </label> -->
+                <input *ngFor="let item of sizeSlgTT,let i = index" (keydown)="onEscKey(i,$event)" type="number" class="form-control col-md-1 col-3" min="36" [value]="item[0]" max="44" (change)="onChangeSize($event,i)" /> 
+                <a class="btn btn-light  col-md-1 col-3" 
                 (click)="onAddSize()"><i class="fas fa-plus"
-                style="color: black;"></i></a>
-            </div>
-        </div>
+                style="color: black;">Size</i></a>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding: 0 15px;">
         
-        <textarea name="" id="" class="form-control col-md-9" rows="4" placeholder="Mô tả" [(ngModel)]="mota"></textarea>
+        <textarea class="form-control col-12" rows="4" placeholder="Mô tả" [(ngModel)]="mota"></textarea>
     </div>
 </div>
 
 <div class="container" style="margin-top: 20px;">
-    <div class="row">
+    <div class="row"   style="padding: 0 15px;">
         <input type="file" class="btn btn-light" multiple (change)='onDrop($event.target.files)'>
         <div *ngFor="let item of files">
             <app-upload-task [file]='item'></app-upload-task>
@@ -87,9 +92,23 @@
 
 <div class="container" style="margin-top: 20px;">
     <div class="row">
-        <div *ngFor="let item of ListURL" class="container col-md-2"  >
+        <div *ngFor="let item of filehinhtemp" class="container col-md-2 col-4"  >
             <img [src]="item" height="100%" width="100%">
         </div>
+    </div>
+     
+    
+     
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <div class="progress">
+                <div class="progress-bar" id="progressbar" style="width:0%"></div>
+            </div>
+        </div>
+       
     </div>
 </div>
 
@@ -98,3 +117,10 @@
         <a class="btn btn-primary col-md-2" (click)="onSubmit()">Ok</a>
     </div>
 </div>
+<!-- 
+<div *ngIf="isAdding" style="top: 0 ;width:100%;height: 100%;position: fixed;background: rgba(243, 238, 238, 0.5); z-index: 1000;">
+    <span class="align-middle">
+        <div style="width: 100px;height: 100px;" class="spinner-border text-warning "></div>
+    </span>
+    
+</div> -->

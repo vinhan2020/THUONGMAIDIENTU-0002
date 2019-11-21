@@ -1,7 +1,8 @@
-import { SanphamService } from 'src/app/service-model/sanpham.service';
-import { Dep } from './../../../../../service-model/dep';
+import Swal from 'sweetalert2';
+import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Component, OnInit } from "@angular/core";
 import { AdminService } from "src/app/service-model/admin.service";
+import { Dep } from 'src/app/service-model/dep';
 
 @Component({
   selector: "app-uploader",
@@ -14,9 +15,15 @@ export class UploaderComponent implements OnInit {
     private spservice: SanphamService
   ) {}
   isHovering: boolean;
+  
+  filehinhtoAddFB :FileList
+  filehinhtemp = [];
+  s;
+  uppercent:number
+  isAdding :boolean = false
 
   files: File[] = [];
-  ListURL: string[];
+  ListURL: string[]=[];
   date;
 
   sizeSlgTT: [number, number, number][] = [];
@@ -24,15 +31,35 @@ export class UploaderComponent implements OnInit {
   gia: number = 0;
   loai: string = "";
   hang: string = "";
-  temp :string =""
+
+  hangtemp: string = "";
+  loaitemp = ""
+
   mota: string = "";
   listSP: Dep[] = [];
 
   ngOnInit() {
     this.date = this.adservice.StringUrlchange.subscribe((url: string[]) => {
       this.ListURL = url;
-      console.log(this.ListURL);
+
+      // console.log(this.ListURL.length);
+      // console.log(this.filehinhtemp.length)
+
+      if(this.ListURL.length !== 0)
+      {
+        this.uppercent = this.ListURL.length  / this.filehinhtemp.length * 100
+        //console.log(this.uppercent)
+        document.getElementById("progressbar").style.width = this.uppercent+"%"
+        
+        // if(this.ListURL.length == this.filehinhtemp.length){
+        //   Swal.fire('Upload completed','','success')
+        // }
+      }
+      if(this.ListURL.length == this.filehinhtoAddFB.length){
+        this.onSubmit()
+      }
     });
+
     this.listSP = this.spservice.getSanPham();
   }
 
@@ -48,10 +75,10 @@ export class UploaderComponent implements OnInit {
     //console.log(this.sizeSlgTT);
   }
 
-  onEscKey(i,e){ 
+  onEscKey(i, e) {
     // this.sizeSlgTT.splice(i, 1);
-    if(e.key == "Escape") this.sizeSlgTT.splice(i, 1);
-    console.log(e)
+    if (e.key == "Escape") this.sizeSlgTT.splice(i, 1);
+    //console.log(e);
   }
 
   onAddSize() {
@@ -59,19 +86,35 @@ export class UploaderComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.hang == "Khác") {this.hang = this.temp}
-    var temp = new Dep(
-      this.ten,
-      this.mota,
-      this.gia,
-      this.sizeSlgTT,
-      this.adservice.StringUrl,
-      this.loai,
-      this.hang
-    );
-    this.listSP.push(temp);
-    this.spservice.upDateSanPham(this.listSP);
-    console.log(temp);
+    // this.isAdding=true
+    if (this.ListURL.length == this.filehinhtoAddFB.length) 
+    {
+      if (this.hang == "Khác") {
+        this.hang = this.hangtemp;
+      }
+      if(this.loai== "Khác"){
+        this.loai = this.loaitemp
+      }
+      var temp = new Dep(
+        this.ten,
+        this.mota,
+        this.gia,
+        this.sizeSlgTT,
+        this.adservice.StringUrl,
+        this.loai,
+        this.hang
+      );
+      this.listSP.push(temp);
+      this.spservice.upDateSanPham(this.listSP);
+      console.log(temp);
+      Swal.fire('Add Completed','','success')
+    }
+    else{
+      for(let  i = 0 ; i<this.filehinhtoAddFB.length;i++){
+        this.files.push(this.filehinhtoAddFB[i])
+      }
+    }
+
   }
 
   toggleHover(event: boolean) {
@@ -79,8 +122,27 @@ export class UploaderComponent implements OnInit {
   }
 
   onDrop(files: FileList) {
+    //console.log(files);
+    this.filehinhtoAddFB = files
+    var array = []
+    this.filehinhtemp=[]
+
+    this.uppercent=0
+    document.getElementById("progressbar").style.width = this.uppercent+"%"
+
+    this.adservice.updateStringUrl(array)
+    
     for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
+      var reader = new FileReader();
+      reader.readAsDataURL(files[i]);
+      reader.onload = e =>{
+        {
+          var t = <FileReader> e.target
+          // console.log(t)
+          this.filehinhtemp.push(t.result);
+          //this.files.push(files[i])
+        }
+      }
     }
   }
 }

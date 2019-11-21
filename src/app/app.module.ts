@@ -1,23 +1,20 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {HttpClientModule} from '@angular/common/http';
-import { JwPaginationComponent } from 'jw-angular-pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { HttpClientModule } from "@angular/common/http";
 
 import {
   MatButtonModule,
   MatSidenavModule,
-   MatIconModule,
-   MatToolbarModule,
+  MatIconModule,
+  MatToolbarModule,
   MatCheckboxModule
 } from "@angular/material";
 
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { ChartsModule } from "ng2-charts";
 
@@ -44,14 +41,13 @@ import { ContactComponent } from "./cli/contact/contact.component";
 import { DetailComponent } from "./cli/shop/detail/detail.component";
 import { ShoppingcardComponent } from "./cli/shop/shoppingcard/shoppingcard.component";
 import { TatcaspComponent } from "./sev/h/tatcasp/tatcasp.component";
-import { AddComponent } from './sev/h/tatcasp/add/add.component';
-import { DropzoneDirective } from './sev/h/tatcasp/add/dropzone.directive';
-import { UploaderComponent } from './sev/h/tatcasp/add/uploader/uploader.component';
-import { UploadTaskComponent } from './sev/h/tatcasp/add/upload-task/upload-task.component';
-import { PaymentComponent } from './cli/shop/payment/payment.component';
-import { PaypalComponent } from './cli/shop/paypal/paypal.component';
-
-
+import { AddComponent } from "./sev/h/tatcasp/add/add.component";
+import { DropzoneDirective } from "./sev/h/tatcasp/add/dropzone.directive";
+import { UploaderComponent } from "./sev/h/tatcasp/add/uploader/uploader.component";
+import { UploadTaskComponent } from "./sev/h/tatcasp/add/upload-task/upload-task.component";
+import { PaymentComponent } from "./cli/shop/payment/payment.component";
+import { AdminService } from './service-model/admin.service';
+import { SanphamService } from './service-model/sanpham.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -87,20 +83,19 @@ const firebaseConfig = {
     DropzoneDirective,
     UploaderComponent,
     UploadTaskComponent,
-    PaymentComponent,
-    PaypalComponent,
-    JwPaginationComponent
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,HttpClientModule,
-    NgxPaginationModule,
-
-    //firebase 
-    AngularFirestoreModule,AngularFireModule.initializeApp(firebaseConfig),AngularFireStorageModule,AngularFireAuthModule,
+    FormsModule,
+    HttpClientModule,
+    //firebase
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireAuthModule,
     //////////////////////////////
-
 
     BrowserAnimationsModule,
     LayoutModule,
@@ -113,10 +108,7 @@ const firebaseConfig = {
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
-
-  
+  providers: [AdminService,SanphamService],
+  bootstrap: [AppComponent,]
 })
-
 export class AppModule {}
