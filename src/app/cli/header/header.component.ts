@@ -15,18 +15,21 @@ export class HeaderComponent implements OnInit {
   gioHang: Dep[] = [];
 
   constructor(
-    private admin: AdminService,
+    public admin: AdminService,
     private router: Router,
     private sp: SanphamService
   ) {}
 
   ngOnInit() {
-    document.getElementById("openButton").className =
+    document.getElementById("openbutton").className =
       "navbar-toggler collapsed";
+
     this.gioHang  = this.sp.GetGioHang();
     this.abc = this.sp.GioHangChange.subscribe(gh => {
       this.gioHang = gh;
     });
+
+    //console.log(window.innerWidth)
   }
 
   onClickToAdmin() {
@@ -36,9 +39,9 @@ export class HeaderComponent implements OnInit {
   // navbar-toggler collapsed
   onHomeClick() {
     this.admin.Admin = false;
-    if (document.getElementById("openButton").className == "navbar-toggler") {
-      document.getElementById("openButton").click();
-    }
+    // if (document.getElementById("openButton").className == "navbar-toggler") {
+    //   document.getElementById("openButton").click();
+    // }
     document.getElementById("foot").style.display = "block";
   }
 
@@ -46,7 +49,7 @@ export class HeaderComponent implements OnInit {
     this.admin.User = this.admin.Guest;
     localStorage.clear();
     this.admin.Dem = 0;
-    document.getElementById("openButton").click();
+    // document.getElementById("openButton").click();
   }
 
   onAdminClick() {

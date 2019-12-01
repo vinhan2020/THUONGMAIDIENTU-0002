@@ -13,6 +13,7 @@ import { ShoppingcardComponent } from "../cli/shop/shoppingcard/shoppingcard.com
 import { TatcaspComponent } from "../sev/h/tatcasp/tatcasp.component";
 import { AddComponent } from "../sev/h/tatcasp/add/add.component";
 import { PaymentComponent } from '../cli/shop/payment/payment.component';
+import { UploaderComponent } from '../sev/h/tatcasp/add/uploader/uploader.component';
  
 const routes: Routes = [
   { path: "", redirectTo: "/TrangChu", pathMatch: "full" },
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: "Home", component: AdminhomeComponent },
       { path: "SanPham", component: TatcaspComponent },
       { path: "Chitietdoanhthu", component: ChitietdoanhthuComponent },
-      { path: "SanPham/Add", component: AddComponent }
+      { path: "SanPham/Add", component: AddComponent },
+      {path:"SanPham/Edit/:id" , component: UploaderComponent}
     ]
   }
 ];

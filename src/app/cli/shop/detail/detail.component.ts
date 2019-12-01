@@ -2,30 +2,69 @@ import { Component, OnInit } from "@angular/core";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Dep } from "src/app/service-model/dep";
+import { AdminService } from "src/app/service-model/admin.service";
 @Component({
   selector: "app-detail",
   templateUrl: "./detail.component.html",
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  sp: Dep;
+  sp: Dep
   id: number;
-  hinhchinh : string
-  hinhphu:string[]
+
+  hinhchinh: string = "";
+  hinhphu: string[] = [];
   listSize: [number, number, number][] = [];
+
+  a;
   constructor(
     private sanphamService: SanphamService,
-    private route: ActivatedRoute
+    public route: ActivatedRoute, private router : Router,
+    public adminservice: AdminService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      this.sp = this.sanphamService.getSanPhambyID(this.id);
+
+    this.a = this.sanphamService.SanPhamChange.subscribe((dep: Dep[]) => {
+      this.route.params.subscribe((params: Params) => {
+
+        this.id = +params["id"];
+        this.sp = this.sanphamService.getSanPhambyID(this.id);
+
+      });
+      this.hinhchinh = this.sp.Img[0];
+      for (let index = 1; index < this.sp.Img.length; index++) 
+      {
+        this.hinhphu.push(this.sp.Img[index])
+      }
+
     });
-    this.hinhchinh = this.sp.Img[0]
-    this.sp.Img.splice(0,1)
+
+
+    
+      this.route.params.subscribe((params: Params) => {
+        this.id = +params["id"];
+        this.sp = this.sanphamService.getSanPhambyID(this.id);
+      });
+      
+      this.hinhchinh = this.sp.Img[0];
+      for (let index = 1; index < this.sp.Img.length; index++) 
+      {
+        this.hinhphu.push(this.sp.Img[index])
+      }
+    
+    // console.log(this.adminservice.User)
+    // console.log(this.route)
+    // console.log(this.router)
+
+    //console.log(this.router.url.includes("Admin"))
   }
+
+  ngOnDestroy(): void {
+    this.sp = this.sanphamService.getSanPhambyID(this.id)
+    
+  }
+
   onSizeClick(i: number) {
     var m = 0;
     if (this.listSize.length == 0) {
@@ -68,5 +107,28 @@ export class DetailComponent implements OnInit {
     );
     this.sanphamService.AddtoGioHang(y);
     alert("Success");
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  onHinhPhuChange(e){
+
+  }
+
+  OnHinhChinhChange(e){
+
+  }
+
+  onSua(){
+
   }
 }

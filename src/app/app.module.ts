@@ -48,6 +48,7 @@ import { UploadTaskComponent } from "./sev/h/tatcasp/add/upload-task/upload-task
 import { PaymentComponent } from "./cli/shop/payment/payment.component";
 import { AdminService } from './service-model/admin.service';
 import { SanphamService } from './service-model/sanpham.service';
+import { UpfbService } from './service-model/upfb.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -108,7 +109,7 @@ const firebaseConfig = {
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [AdminService,SanphamService],
+  providers: [AdminService,SanphamService,UpfbService],
   bootstrap: [AppComponent,]
 })
 export class AppModule {}

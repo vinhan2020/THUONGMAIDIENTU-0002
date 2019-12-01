@@ -37,6 +37,11 @@ export class AdminService {
     )
   ];
 
+  GetListTK(){
+    return this.ListTK.slice()
+  }
+
+
   StringUrlchange = new EventEmitter<string[]>();
   StringUrl: string[] = [];
 

@@ -1,11 +1,72 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                    a
+        <div class="col-12 col-md-9 ">
+
+            <div  class="row" style="border: 1px solid red;">
+                <div class="col-md-6 col-6" *ngFor="let item of listsp; let i=index" style="padding: 10px 10px;border: 1px solid white;">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <img [src]='item.Img[0]' width="100%" alt="" style="border: 1px solid white;">
+                        </div>
+
+                        <div class="col-md-8">
+                            
+                                <div class="row">
+                                    <h5 class="col-md-12" style="text-align: center;" >
+                                        {{item.Ten}}
+                                    </h5>
+                                </div>
+                                <hr>
+                                <div class="row">
+
+                                        <p class="col-md-12"   style="text-align: justify;color: white;" >
+                                                {{item.MoTa}}
+                                        </p>
+                                </div>
+                                <hr>
+                                
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <p style="color: white;">Size :</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <p class="col-1" style="color: white;" *ngFor="let it of item.SizEvsGiAvsSolGvsTT">{{it[0]}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                        <p for=""  style="color: white;" class="col-md-5">Tình trạng :</p>
+                                        <p class="col-md-6" style="color: white;">{{item.TinhTrang}}</p>
+    
+                                </div>
+
+
+
+                                <div class="row" style="padding: 0 15px;">
+                                    <a class="btn btn-success col-md-6 col-10" routerLink='/Admin/SanPham/Edit/{{item.ID}}' >
+                                        Chỉnh sửa
+                                    </a>
+
+                                </div>
+
+                                
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div style="position: fixed;right: 0;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                a
-            </div>
-     </div>
+
+        </div>
+
+
+        <div class=" col-md-3 " style="border: 1px solid blue">
+            a
+        </div>
+
+    </div>
+
 </div>

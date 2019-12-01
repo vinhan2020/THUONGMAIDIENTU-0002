@@ -1,6 +1,8 @@
 <div class="container">
-    <p style="font-size: 40px; text-align: center">WELCOME TO MY SHOP</p>
+    <!-- <p style="font-size: 40px; text-align: center">WELCOME TO MY SHOP</p> -->
     <div class="row">
+
+
         <div class="col-md-6">
             <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -13,15 +15,24 @@
 
                 <!-- The slideshow -->
                 <div class="carousel-inner">
-                    
+
                     <div class="carousel-item active">
-                        <img src="{{hinhchinh}}" alt="Adidas" width="1100" height="500">
+                        <img src="{{hinhchinh}}" alt="" class="col-md-12" width="100%" height="100%">
+                        <!-- <div class="carousel-caption" >
+                            <textarea class="form-control" rows="3" [(ngModel)]="hinhchinh"></textarea>
+                            <input type="file" (change)='OnHinhChinhChange($event)'>
+                        </div> -->
                     </div>
-                    <div class="carousel-item" *ngFor="let item of sp.Img,let i = index">
-                        <img [src]="item" alt="Adidas" width="1100" height="500">
+
+                    <div class="carousel-item" *ngFor="let item of hinhphu,let i = index">
+                        <img [src]="item" alt="" width="100%" class="col-md-12" height="100%">
+                        <!-- <div class="carousel-caption">
+                            <textarea class="form-control" rows="3" [(ngModel)]="item"></textarea>
+                            <input type="file" (change)='onHinhPhuChange($event,i)'>
+                        </div> -->
                     </div>
-                    ngif
-                    
+
+
                 </div>
 
                 <!-- Left and right controls -->
@@ -32,7 +43,16 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
+
+            <div class="col-md-6">
+
+            </div>
+
+
+
         </div>
+
+
         <div class="col-md-6">
             <div class="name">
                 <h2>{{sp.Ten}}</h2>
@@ -43,13 +63,20 @@
             </div>
             <hr>
             <div class="row">
-                <h5>Size</h5>
-                <div *ngFor="let item of sp.SizEvsGiAvsSolGvsTT; let i=index">
-                    <div class="col-md-2" style="float: left;">
-                        <a class="btn" (click)="onSizeClick(i)" style="width: 50px; text-align: center">
-                            {{item[0]}}
-                        </a>
+                <h5 class="col-md-2">Size</h5>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-2" *ngFor="let item of sp.SizEvsGiAvsSolGvsTT; let i=index">
+                            <a class="btn" (click)="onSizeClick(i)" style="width: 100%;" style="margin-bottom: 5px;">
+                                {{item[0]}}
+                            </a>
+                            
+                        </div>
                     </div>
+
+
+
+
                 </div>
             </div>
             <hr>
@@ -57,19 +84,24 @@
             <div class="container" *ngFor="let item of listSize; let i=index">
                 <div class="row">
                     <div class="col-md-1">
-                        <button  class="btn btn-light " style=" width: 50px; text-align: center; margin-bottom: 5px">
+                        <button class="btn btn-light " style=" width: 50px; text-align: center; margin-bottom: 5px">
                             <a (click)="onDelete()">{{item[0]}}</a>
                         </button>
                     </div>
                     <div class="col-md-5">
                         <input class="form-control" type="number" value="1" (change)=onChange($event,i)>
-                    </div> 
-                </div>  
-            </div> 
-            <div class="container"> 
-                <a class="btn" (click)="onDatHang()">ADD TO CARD</a> 
+                    </div>
+                </div>
             </div>
-            
+
+            <div class="container">
+                <div class="row">
+                    <a class="btn col-md-6" *ngIf="adminservice.User.Role != 'Admin'" (click)="onDatHang()">Thêm vào giỏ
+                        hàng</a>
+                    <a class="btn col-md-3" *ngIf="adminservice.User.Role != 'Guest'" (click)="onSua()">Sửa</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

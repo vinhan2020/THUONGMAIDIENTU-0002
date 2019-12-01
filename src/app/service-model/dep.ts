@@ -5,7 +5,7 @@ export class Dep {
   Ten: string;
   MoTa: string;
   SizEvsGiAvsSolGvsTT: [number, number, number][];
-  Gia:number
+  Gia: number;
   Img: string[];
   Loai: string;
   Hang: string;
@@ -13,12 +13,12 @@ export class Dep {
 
   NgayChinhGiaVsGiaCu: [Date, number][];
   DanhGia: [Khachhang, string][];
-  NgayThem : Date
+  NgayThem: Date;
 
   constructor(
     ten: string,
     mota: string,
-    gia:number,
+    gia: number,
     sizegiaslgTt: [number, number, number][],
     img: string[],
     loai: string,
@@ -28,14 +28,12 @@ export class Dep {
     this.Loai = loai;
     this.Ten = ten;
     this.MoTa = mota;
-    this.Gia = gia
+    this.Gia = gia;
     this.SizEvsGiAvsSolGvsTT = sizegiaslgTt;
     this.Hang = hang;
-
     this.TinhTrang = "Còn hàng";
     this.NgayChinhGiaVsGiaCu = [];
     this.DanhGia = [];
-    
-
   }
+  
 }

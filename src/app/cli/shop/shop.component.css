@@ -255,3 +255,10 @@ input button{
 
 }
 
+
+
+
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #b0bec5;
+}
