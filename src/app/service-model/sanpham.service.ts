@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Dep } from "./dep";
 import { isNullOrUndefined } from 'util';
+import { Bill } from './bill';
 
 
 @Injectable({
@@ -36,8 +37,6 @@ export class SanphamService {
     } else {
       this.ListSanPham.push(dep)
     }
-    
-
     this.ListSanPham.map((element,i) => {
       element.ID=i
     });
@@ -47,9 +46,6 @@ export class SanphamService {
 
   upDateSanPham(sanpham: Dep[]) {
     this.ListSanPham = sanpham;
-    // this.ListSanPham.map((element,i) => {
-    //   element.ID=i
-    // });
     this.SanPhamChange.emit(this.ListSanPham.slice());
   }
 
@@ -62,21 +58,7 @@ export class SanphamService {
     this.SanPhamChange.emit(this.ListSanPham.slice())
   }
 
-  GioHang: Dep[] = [new Dep(
-    "DÉP CROCS LITERIDE BLACK/GREY/WHITE LOGO 2019", //tên
-    "", //mô tả
-
-    25000,
-    [[41, 1, 0]],
-    [
-      "https://cdn.vortexs.io/api/images/85191436-6def-4179-8cfd-b9c52b714174/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
-      "https://cdn.vortexs.io/api/images/9ea043d5-7851-44af-997b-5b5c2750bcd3/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
-      "https://cdn.vortexs.io/api/images/88e8ae44-5597-466e-9cfa-5960023d36f9/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
-      `https://cdn.vortexs.io/api/images/816adf77-1446-40ab-994a-52e26957830a/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg`
-    ], //hình
-    "Dép Crocs", //loại
-    "Crocs" //hãng
-  )];
+  GioHang: Dep[] = [];
   GioHangChange = new EventEmitter<Dep[]>();
 
   GetGioHang() {
@@ -104,10 +86,27 @@ export class SanphamService {
 
 
 
+  // new Dep(
+  //   "DÉP CROCS LITERIDE BLACK/GREY/WHITE LOGO 2019", //tên
+  //   "", //mô tả
+
+  //   25000,
+  //   [[41, 1, 0]],
+  //   [
+  //     "https://cdn.vortexs.io/api/images/85191436-6def-4179-8cfd-b9c52b714174/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
+  //     "https://cdn.vortexs.io/api/images/9ea043d5-7851-44af-997b-5b5c2750bcd3/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
+  //     "https://cdn.vortexs.io/api/images/88e8ae44-5597-466e-9cfa-5960023d36f9/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg",
+  //     `https://cdn.vortexs.io/api/images/816adf77-1446-40ab-994a-52e26957830a/1140/w/hang-chinh-hang-dep-crocs-literide-black-grey-white-logo-2019.jpeg`
+  //   ], //hình
+  //   "Dép Crocs", //loại
+  //   "Crocs" //hãng
+  // )
 
 
+  BILL :Bill = new Bill([],new Date(),0)
+  BillChange = new EventEmitter<Bill>()
 
-
+  
 
 
 

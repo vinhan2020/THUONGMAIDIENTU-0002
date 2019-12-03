@@ -15,6 +15,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { ChartsModule } from "ng2-charts";
 
@@ -49,6 +50,7 @@ import { PaymentComponent } from "./cli/shop/payment/payment.component";
 import { AdminService } from './service-model/admin.service';
 import { SanphamService } from './service-model/sanpham.service';
 import { UpfbService } from './service-model/upfb.service';
+import { SignupComponent } from './sev/signup/signup.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -84,7 +86,8 @@ const firebaseConfig = {
     DropzoneDirective,
     UploaderComponent,
     UploadTaskComponent,
-    PaymentComponent
+    PaymentComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -97,8 +100,8 @@ const firebaseConfig = {
     AngularFireStorageModule,
     AngularFireAuthModule,
     //////////////////////////////
-
-    BrowserAnimationsModule,
+    NgxPayPalModule,
+    BrowserAnimationsModule,  
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

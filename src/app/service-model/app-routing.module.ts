@@ -12,22 +12,24 @@ import { DetailComponent } from "../cli/shop/detail/detail.component";
 import { ShoppingcardComponent } from "../cli/shop/shoppingcard/shoppingcard.component";
 import { TatcaspComponent } from "../sev/h/tatcasp/tatcasp.component";
 import { AddComponent } from "../sev/h/tatcasp/add/add.component";
-import { PaymentComponent } from '../cli/shop/payment/payment.component';
-import { UploaderComponent } from '../sev/h/tatcasp/add/uploader/uploader.component';
- 
+import { PaymentComponent } from "../cli/shop/payment/payment.component";
+import { UploaderComponent } from "../sev/h/tatcasp/add/uploader/uploader.component";
+import { SignupComponent } from "../sev/signup/signup.component";
+
 const routes: Routes = [
   { path: "", redirectTo: "/TrangChu", pathMatch: "full" },
   { path: "TrangChu", component: HomeComponent },
   { path: "Signin", component: SevComponent },
+  { path: "Signup", component: SignupComponent },
   { path: "Shop", component: ShopComponent },
   { path: "Blog", component: BlogComponent },
   { path: "Contact", component: ContactComponent },
   { path: "Shop/Detail/:id", component: DetailComponent },
   { path: "TrangChu/Detail/:id", component: DetailComponent },
   { path: "ShoppingCard", component: ShoppingcardComponent },
-  { path: "ShoppingCard/Payment", component: PaymentComponent},
-  { path: "ShoppingCard/Payment/Paypal", component: PaymentComponent},
-   {
+  { path: "ShoppingCard/Payment", component: PaymentComponent },
+  { path: "ShoppingCard/Payment/Paypal", component: PaymentComponent },
+  {
     path: "Admin",
     component: HComponent,
     children: [
@@ -36,7 +38,7 @@ const routes: Routes = [
       { path: "SanPham", component: TatcaspComponent },
       { path: "Chitietdoanhthu", component: ChitietdoanhthuComponent },
       { path: "SanPham/Add", component: AddComponent },
-      {path:"SanPham/Edit/:id" , component: UploaderComponent}
+      { path: "SanPham/Edit/:id", component: UploaderComponent }
     ]
   }
 ];

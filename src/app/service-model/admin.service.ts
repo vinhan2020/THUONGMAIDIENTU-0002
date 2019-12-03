@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { Account } from "./account";
 import { Khachhang } from "./khachhang";
 
 @Injectable({
@@ -11,36 +10,62 @@ export class AdminService {
   Admin: boolean = false;
   IsLogedIn = false;
   Dem: number = 0;
+  sodembatky = Math.floor(Math.random() * 100000 + 1);
+  ListKhachHangChange = new EventEmitter<Khachhang[]>();
 
-  User: Khachhang = new Khachhang("", "", "Guest", false, "Guest", "", "");
-  Guest: Khachhang = new Khachhang("", "", "Guest", false, "Guest", "", "");
+  User: Khachhang = new Khachhang(
+    "",
+    "",
+    "Guest",
+    false,
+    "Guest" + this.sodembatky,
+    0,
+    ""
+  );
+  Guest: Khachhang = new Khachhang(
+    "",
+    "",
+    "Guest",
+    false,
+    "Guest" + this.sodembatky,
+    0,
+    ""
+  );
 
-  ListTK: Khachhang[] = [
-    new Khachhang("1", "1", "Admin", false, "Minh", "0931878825", "abc 123"),
-    new Khachhang(
-      "2",
-      "2",
-      "Guest",
-      false,
-      "Max",
-      "098765432",
-      "weqweqw dasdsada"
-    ),
-    new Khachhang(
-      "3",
-      "3",
-      "Guest",
-      false,
-      "qwerP",
-      "098765432",
-      "weqweqw dasdsada"
-    )
-  ];
+  ListTK: Khachhang[] = [];
 
-  GetListTK(){
-    return this.ListTK.slice()
+  getTkbyID(i) {
+    return this.ListTK[i];
   }
 
+  GetListTK() {
+    return this.ListTK.slice();
+  }
+
+  themTKvaoListTk(tk: Khachhang) {
+    this.ListTK.push(tk);
+    this.ListKhachHangChange.emit(this.ListTK.slice());
+  }
+
+  UpdateListTK(TK: Khachhang[]) {
+    this.ListTK = TK;
+    this.ListKhachHangChange.emit(this.ListTK.slice());
+  }
+
+  updatetkbyid(tk: Khachhang, i) {
+    this.ListTK[i] = tk;
+    this.ListKhachHangChange.emit(this.ListTK.slice());
+  }
+
+  getIDUser(tk: String) {
+    for (let index = 0; index < this.ListTK.length; index++) {
+      if (tk == this.ListTK[index].TK) {
+        if (tk != "") {
+          return index;
+        }
+      }
+    }
+  }
 
   StringUrlchange = new EventEmitter<string[]>();
   StringUrl: string[] = [];

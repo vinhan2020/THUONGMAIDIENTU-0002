@@ -9,7 +9,7 @@ import { AdminService } from "src/app/service-model/admin.service";
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  sp: Dep
+  sp: Dep;
   id: number;
 
   hinhchinh: string = "";
@@ -19,40 +19,33 @@ export class DetailComponent implements OnInit {
   a;
   constructor(
     private sanphamService: SanphamService,
-    public route: ActivatedRoute, private router : Router,
+    public route: ActivatedRoute,
+    private router: Router,
     public adminservice: AdminService
   ) {}
 
   ngOnInit() {
-
     this.a = this.sanphamService.SanPhamChange.subscribe((dep: Dep[]) => {
       this.route.params.subscribe((params: Params) => {
-
         this.id = +params["id"];
         this.sp = this.sanphamService.getSanPhambyID(this.id);
-
       });
       this.hinhchinh = this.sp.Img[0];
-      for (let index = 1; index < this.sp.Img.length; index++) 
-      {
-        this.hinhphu.push(this.sp.Img[index])
+      for (let index = 1; index < this.sp.Img.length; index++) {
+        this.hinhphu.push(this.sp.Img[index]);
       }
-
     });
 
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params["id"];
+      this.sp = this.sanphamService.getSanPhambyID(this.id);
+    });
 
-    
-      this.route.params.subscribe((params: Params) => {
-        this.id = +params["id"];
-        this.sp = this.sanphamService.getSanPhambyID(this.id);
-      });
-      
-      this.hinhchinh = this.sp.Img[0];
-      for (let index = 1; index < this.sp.Img.length; index++) 
-      {
-        this.hinhphu.push(this.sp.Img[index])
-      }
-    
+    this.hinhchinh = this.sp.Img[0];
+    for (let index = 1; index < this.sp.Img.length; index++) {
+      this.hinhphu.push(this.sp.Img[index]);
+    }
+
     // console.log(this.adminservice.User)
     // console.log(this.route)
     // console.log(this.router)
@@ -61,8 +54,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.sp = this.sanphamService.getSanPhambyID(this.id)
-    
+    this.sp = this.sanphamService.getSanPhambyID(this.id);
   }
 
   onSizeClick(i: number) {
@@ -106,29 +98,15 @@ export class DetailComponent implements OnInit {
       this.sp.Hang
     );
     this.sanphamService.AddtoGioHang(y);
+    var t = this.sanphamService.GetGioHang();
+    this.sanphamService.BILL.SanPham = t;
+
     alert("Success");
   }
 
+  onHinhPhuChange(e) {}
 
+  OnHinhChinhChange(e) {}
 
-
-
-
-
-
-
-
-
-
-  onHinhPhuChange(e){
-
-  }
-
-  OnHinhChinhChange(e){
-
-  }
-
-  onSua(){
-
-  }
+  onSua() {}
 }

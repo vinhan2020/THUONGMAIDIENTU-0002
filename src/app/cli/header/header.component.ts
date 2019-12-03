@@ -4,6 +4,7 @@ import { Route, ActivatedRoute, Router } from "@angular/router";
 import { Khachhang } from "src/app/service-model/khachhang";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
+import { UpfbService } from 'src/app/service-model/upfb.service';
 
 @Component({
   selector: "app-header",
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public admin: AdminService,
     private router: Router,
-    private sp: SanphamService
+    private sp: SanphamService, private updb : UpfbService
   ) {}
 
   ngOnInit() {
@@ -49,6 +50,11 @@ export class HeaderComponent implements OnInit {
     this.admin.User = this.admin.Guest;
     localStorage.clear();
     this.admin.Dem = 0;
+    for (let index = 0; index < this.admin.ListTK.length; index++) {
+      this.admin.ListTK[index].IsLogIn=false
+      
+    }
+    this.updb.UpListKhachHangToFB()
     // document.getElementById("openButton").click();
   }
 
