@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
 
   onLogOut() {
     this.admin.User = this.admin.Guest;
+    this.admin.IsLogedIn= false
     localStorage.clear();
     this.admin.Dem = 0;
     for (let index = 0; index < this.admin.ListTK.length; index++) {

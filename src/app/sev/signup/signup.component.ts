@@ -16,33 +16,53 @@ export class SignupComponent implements OnInit {
   tk = "";
   mk = "";
   dc = "";
-  constructor(private adminsv: AdminService,private route : Router , private updb : UpfbService) {}
+  constructor(private adminsv: AdminService,private route : Router , private updb : UpfbService ) {}
+  a
 
   ngOnInit() {
+    this.a = this.adminsv.ListKhachHangChange.subscribe((khach:Khachhang[])=>
+    {
+      console.log(khach)
+      console.log(typeof this.adminsv.ListTK)
+
+    })
+
     document.getElementById("foot").style.display = "none";
+    console.log(this.adminsv.ListTK)
+
   }
 
   onDkClick() {
     
-    var t = new Khachhang(
-      this.tk,
-      this.mk,
-      "Guest",
-      false,
-      this.ten,
-      this.sdt,
-      this.dc
-    );
-    this.adminsv.themTKvaoListTk(t);
-    
-    for (let index = 0; index < this.adminsv.ListTK.length; index++) {
-      this.adminsv.ListTK[index].IdKhachHang = index  
+    if(this.adminsv.ListTK == undefined)
+    {
+        
+
     }
-    this.updb.UpListKhachHangToFB()
-     
-    Swal.fire('Đang ký thành công','','success')
-    .then(()=>{
-      this.route.navigate(['/Signin'])
-    })
+    else 
+    {
+      var t = new Khachhang(
+        this.tk,
+        this.mk,
+        "Guest",
+        false,
+        this.ten,
+        this.sdt,
+        this.dc
+      );
+      this.adminsv.themTKvaoListTk(t);
+      
+      for (let index = 0; index < this.adminsv.ListTK.length; index++) {
+        this.adminsv.ListTK[index].IdKhachHang = index  
+      }
+      this.updb.UpListKhachHangToFB()
+      
+      Swal.fire('Đang ký thành công','','success')
+      .then(()=>{
+        this.route.navigate(['/Signin'])
+      })
+      
+    }
+
   }
 }

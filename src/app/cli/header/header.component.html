@@ -46,7 +46,7 @@
         </a>
 
         <div class="dropdown-content">
-          <a *ngIf="admin.User.IsLogIn != true" style="cursor: pointer" routerLink='Signin'>SignIn</a>
+          <a *ngIf="admin.User.IsLogIn != true" name='signin' style="cursor: pointer" routerLink='Signin'>SignIn</a>
           <a *ngIf="admin.User.IsLogIn == true" routerLink="/UserHomePage" style="cursor: pointer">User</a>
           <a *ngIf="admin.User.IsLogIn == true && admin.User.Role =='Admin'" routerLink='Admin' (click)="onAdminClick()"
             style="cursor: pointer">Admin</a>

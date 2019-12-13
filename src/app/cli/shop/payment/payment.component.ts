@@ -107,7 +107,12 @@ export class PaymentComponent implements OnInit {
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
         this.sanphamService.BILL.Status="Đợi kiểm tra ..."
         this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
-
+        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000)
+        //console.log(typeof this.currentuser.Bill)
+        if(this.currentuser.Bill == undefined)
+        {
+          this.currentuser.Bill = []
+        }
 
         this.currentuser.Bill.push(this.sanphamService.BILL);
 
@@ -146,13 +151,14 @@ export class PaymentComponent implements OnInit {
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
         this.sanphamService.BILL.Status="Đợi kiểm tra ..."
         this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
+        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000)
 
+        // if(this.currentuser.Bill == undefined)
+        // {
+        //   this.currentuser.Bill = []
+        // }
         khach.Bill.push(this.sanphamService.BILL);
 
-        for (let index = 0; index < this.currentuser.Bill.length; index++)
-        {
-          this.currentuser.Bill[index].IdBill = index
-        }
 
         this.admin.themTKvaoListTk(khach);
         this.updb.UpListKhachHangToFB();

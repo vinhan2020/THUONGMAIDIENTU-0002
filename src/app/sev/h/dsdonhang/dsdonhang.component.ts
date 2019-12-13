@@ -17,7 +17,6 @@ export class DsdonhangComponent implements OnInit {
   constructor(private admin: AdminService,public datepipe : DatePipe) {}
 
   ngOnInit() {
-    //console.log(this.admin.ListTK)
 
     this.a = this.admin.ListKhachHangChange.subscribe((Khach:Khachhang[]) => 
     {
