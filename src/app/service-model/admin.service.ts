@@ -22,6 +22,7 @@ export class AdminService {
     0,
     ""
   );
+  
   Guest: Khachhang = new Khachhang(
     "",
     "",

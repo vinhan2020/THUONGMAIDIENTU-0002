@@ -19,7 +19,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 
 import { ChartsModule } from "ng2-charts";
 
-import { AppRoutingModule } from "./service-model/app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CliComponent } from "./cli/cli.component";
 import { HeaderComponent } from "./cli/header/header.component";
@@ -51,6 +51,10 @@ import { AdminService } from './service-model/admin.service';
 import { SanphamService } from './service-model/sanpham.service';
 import { UpfbService } from './service-model/upfb.service';
 import { SignupComponent } from './sev/signup/signup.component';
+import { UserhomeComponent } from './cli/userhome/userhome.component';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { HistoryComponent } from './cli/userhome/history/history.component';
+import { DsdonhangComponent } from './sev/h/dsdonhang/dsdonhang.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZitI-HPt05zzsC5JfwJ7g8R5iWPT7KPM",
@@ -87,7 +91,10 @@ const firebaseConfig = {
     UploaderComponent,
     UploadTaskComponent,
     PaymentComponent,
-    SignupComponent
+    SignupComponent,
+    UserhomeComponent,
+    HistoryComponent,
+    DsdonhangComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +119,7 @@ const firebaseConfig = {
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [AdminService,SanphamService,UpfbService],
+  providers: [AdminService,SanphamService,UpfbService ,DatePipe,DecimalPipe],
   bootstrap: [AppComponent,]
 })
 export class AppModule {}

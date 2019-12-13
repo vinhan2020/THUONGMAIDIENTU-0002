@@ -3,9 +3,9 @@ import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
 import { AdminService } from "src/app/service-model/admin.service";
 import { Khachhang } from "src/app/service-model/khachhang";
-import { UpfbService } from 'src/app/service-model/upfb.service';
-import { Bill } from 'src/app/service-model/bill';
-
+import { UpfbService } from "src/app/service-model/upfb.service";
+import { Bill } from "src/app/service-model/bill";
+import Swal from "sweetalert2";
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
@@ -15,54 +15,76 @@ export class PaymentComponent implements OnInit {
   constructor(
     private sanphamService: SanphamService,
     public admin: AdminService,
-    private updb : UpfbService
+    private updb: UpfbService
   ) {}
 
-  gioHang: Dep[];
-   
+  gioHang: Dep[] = [];
+
   TongTien = 0;
-  currentuser :Khachhang
+  currentuser: Khachhang;
 
   ten = "";
-  sdt = 0;
-  dc = "";
+  sdt;
+  dc;
 
-  
-  idtk
+  idtk: number;
 
   ngOnInit() {
-    var a = this.sanphamService.GioHangChange.subscribe((giohang:Dep[])=>{
-      this.gioHang=giohang
+    var a = this.sanphamService.GioHangChange.subscribe((giohang: Dep[]) => {
+      this.gioHang = giohang;
       this.gioHang.forEach(Dep => {
         Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
           this.TongTien = this.TongTien + element[2];
         });
       });
-    })
-    var b = this.admin.ListKhachHangChange.subscribe((khachhang:Khachhang[])=>{
-      this.idtk = this.admin.getIDUser(this.admin.User.TK)
-      
-      console.log(this.idtk)
-      console.log(this.admin.IsLogedIn)
-       
-      this.currentuser = this.admin.ListTK[this.idtk]
-      this.ten=this.currentuser.Ten
-      this.sdt = this.currentuser.SDT
-      this.dc = this.currentuser.DiaChi
-    })
+    });
 
-    this.idtk = this.admin.getIDUser(this.admin.User.TK)
-      
-      console.log(this.idtk)
-      console.log(this.admin.IsLogedIn)
-       
-      this.currentuser = this.admin.ListTK[this.idtk]
-      this.ten=this.currentuser.Ten
-      this.sdt = this.currentuser.SDT
-      this.dc = this.currentuser.DiaChi
+    var b = this.admin.ListKhachHangChange.subscribe(
+      (khachhang: Khachhang[]) => {
+        this.idtk = this.admin.getIDUser(this.admin.User.TK);
+        // console.log(this.idtk);
+        // console.log(this.currentuser);
 
+        try {
+          this.currentuser = this.admin.ListTK[this.idtk];
+          this.ten = this.currentuser.Ten;
+          if (this.currentuser.SDT == 0) 
+          {
+            this.sdt = undefined;
+          } 
+          else 
+          {
+            this.sdt = this.currentuser.SDT;
+          }
+          if (this.currentuser.DiaChi == "") 
+          {
+            this.sdt = undefined;
+          } else {
+            this.dc = this.currentuser.DiaChi;
+          }
+        } catch (e) {
+          console.log;
+        }
+      }
+    );
 
-
+    try {
+      this.idtk = this.admin.getIDUser(this.admin.User.TK);
+      console.log(this.idtk);
+      console.log(this.admin.IsLogedIn);
+      this.currentuser = this.admin.ListTK[this.idtk];
+      this.ten = this.currentuser.Ten;
+      if (this.currentuser.SDT == 0) {
+        this.sdt = undefined;
+      } else {
+        this.sdt = this.currentuser.SDT;
+      }
+      if (this.currentuser.DiaChi == "") {
+        this.sdt = undefined;
+      } else {
+        this.dc = this.currentuser.DiaChi;
+      }
+    } catch (e) {}
 
     this.gioHang = this.sanphamService.GetGioHang();
     this.gioHang.forEach(Dep => {
@@ -70,55 +92,74 @@ export class PaymentComponent implements OnInit {
         this.TongTien = this.TongTien + element[2];
       });
     });
-     
-    
   }
 
   pay() {
-    if (this.admin.IsLogedIn) {
-
-      this.sanphamService.BILL.NgayXuat= new Date()
-      this.sanphamService.BILL.TongTien=this.TongTien +20000
-      var i = this.admin.getIDUser(this.admin.User.TK)
-      
-     
-      
-      this.currentuser.Bill.push(this.sanphamService.BILL)
-      this.admin.updatetkbyid(this.currentuser,i)
-     
-      this.updb.UpListKhachHangToFB()
-
-      this.sanphamService.BILL =new Bill([],new Date(),0)
-      this.sanphamService.UpdateGioHang([])
-
-    } 
-    else
+    if (this.sanphamService.GetGioHang().length == 0) 
     {
-      var tentamp;
-      if (this.ten != this.admin.User.Ten) {
-        tentamp = this.ten;
-      } else {
-        tentamp = this.admin.User.Ten;
+      Swal.fire("Giỏ hàng đang trống", "chọn giày trước", "error");
+    } 
+    else 
+    {
+      if (this.admin.IsLogedIn)
+      {
+        this.sanphamService.BILL.NgayXuat = new Date();
+        this.sanphamService.BILL.TongTien = this.TongTien + 20000;
+        this.sanphamService.BILL.Status="Đợi kiểm tra ..."
+        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
+
+
+        this.currentuser.Bill.push(this.sanphamService.BILL);
+
+        for (let index = 0; index < this.currentuser.Bill.length; index++) 
+        {
+          this.currentuser.Bill[index].IdBill = index
+        }
+
+        this.admin.updatetkbyid(this.currentuser, this.idtk);
+        this.updb.UpListKhachHangToFB();
+
+        this.sanphamService.BILL = new Bill([], new Date(), 0);
+        this.sanphamService.UpdateGioHang([]);
       }
-      var khach = new Khachhang(
-        this.admin.User.TK,
-        this.admin.User.MK,
-        this.admin.User.Role,
-        this.admin.User.IsLogIn,
-        tentamp,
-        this.sdt,
-        this.dc
-      );
-      
-      this.sanphamService.BILL.NgayXuat= new Date()
-      this.sanphamService.BILL.TongTien=this.TongTien +20000
-      khach.Bill.push(this.sanphamService.BILL)
-      this.admin.themTKvaoListTk(khach)
-      this.updb.UpListKhachHangToFB()
+      else
+      {
+        var tentamp;
+        if (this.ten != this.admin.User.Ten) {
+          tentamp = this.ten;
+        } 
+        else 
+        {
+          tentamp = this.admin.User.Ten;
+        }
+        var khach = new Khachhang(
+          this.admin.User.TK,
+          this.admin.User.MK,
+          this.admin.User.Role,
+          this.admin.User.IsLogIn,
+          tentamp,
+          this.sdt,
+          this.dc
+        );
 
-      this.sanphamService.BILL =new Bill([],new Date(),0)
+        this.sanphamService.BILL.NgayXuat = new Date();
+        this.sanphamService.BILL.TongTien = this.TongTien + 20000;
+        this.sanphamService.BILL.Status="Đợi kiểm tra ..."
+        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
 
+        khach.Bill.push(this.sanphamService.BILL);
 
+        for (let index = 0; index < this.currentuser.Bill.length; index++)
+        {
+          this.currentuser.Bill[index].IdBill = index
+        }
+
+        this.admin.themTKvaoListTk(khach);
+        this.updb.UpListKhachHangToFB();
+
+        this.sanphamService.BILL = new Bill([], new Date(), 0);
+        this.sanphamService.UpdateGioHang([]);
+      }
     }
   }
 }

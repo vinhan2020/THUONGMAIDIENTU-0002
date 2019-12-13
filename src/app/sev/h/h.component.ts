@@ -14,9 +14,18 @@ export class HComponent implements OnInit {
     document.getElementById("NavigateBar").style.display='none'
 
     document.getElementById("foot").style.display = "none";
-    if (this.admin.User.Role != "Admin") {
-      alert("Không có quyền truy cập");
-      this.route.navigate([""]);
+
+    if(localStorage.getItem("TK").includes('admin') && localStorage.getItem("MK").includes('admin'))
+    {
+
     }
+    else
+    {
+      if (this.admin.User.Role != "Admin") {
+        alert("Không có quyền truy cập");
+        this.route.navigate([""]);
+      }
+    }
+
   }
 }

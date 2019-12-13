@@ -1,36 +1,37 @@
-<div class="container" style="margin-top: 20px; margin-bottom: 20px">
+<div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2 style="text-align: center; margin-bottom: 20px;">Shop Sandal</h2>
             <div class="form-custommer">
                 <input type="text" class="form-control" placeholder="First Name" [(ngModel)]="ten">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-6">
                         <input type="email" class="form-control" placeholder="Email">
 
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-6">
                         <input type="number" class="form-control" placeholder="Phone" [(ngModel)]="sdt">
+                        
                     </div>
                 </div>
-                <input type="text" class="form-control" [value]="admin.User.DiaChi" [(ngModel)]="dc">
+                <input type="text" class="form-control" placeholder="Adress" [value]="admin.User.DiaChi" [(ngModel)]="dc">
                 <div class="row">
                     <div class="col-md-6">
                         <select class="abc form-control">
-                            <option>City</option>
+                            <option disabled>City</option>
                             <option value="nam">HCM</option>
                             <option value="bac">Hà Nội</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <select class="form-control">
-                            <option>State</option>
+                            <option disabled>State</option>
                             <option>Quận 1</option>
                             <option>Quận 2</option>
                         </select>
                     </div>
                 </div>
-                <div style=" padding-top: 100px;">
+                <div>
                     <button class="btn btn-dark" routerLink="/ShoppingCard" style="margin-top: 7px"> CARD</button>
                     <button style=" margin-top: 7px; float: right;" routerLink="/ShoppingCard/Payment/Paypal"
                         routerLinkActive="router-link-active" (click)="pay()" class="btn btn-dark">Confirm And Pay</button>
@@ -40,10 +41,10 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-8">
             <h2 style="text-align: center; margin-bottom: 20px;">Infomation of products</h2>
-            <div class="container">
-                <div class="row">
+            
+                
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -55,30 +56,31 @@
                         </thead>
                         <tbody class="table table-striped">
                             <tr *ngFor="let item of gioHang; let idIteminGioHang =index">
-                                <td scope="row">
+                                <td scope="row" colspan="1">
                                     <img [src]="item.Img[0]" class="" height="120px">
                                 </td>
-                                <td class="col-md-2">
+                                <td colspan="1">
                                     {{item.Ten}}
                                 </td>
-                                <td>{{item.SizEvsGiAvsSolGvsTT[0][1]}}</td>
+                                <td colspan="1">{{item.SizEvsGiAvsSolGvsTT[0][1]}}</td>
                                 <td class="col-md-2"> {{item.Gia}}</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                
                 <div class="row">
 
 
                 </div>
-            </div>
+            
+
             <hr>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-7">
                         <h6>Shipping</h6>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-5">
                         <h6>20.000 VNĐ</h6>
                     </div>
                 </div>
@@ -87,8 +89,8 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">Tổng Tiền:</div>
-                    <div class="col-md-5">{{TongTien}}</div>
+                    <div class="col-md-7 col-7">Tổng Tiền:</div>
+                    <div class="col-md-5 col-5">{{TongTien}}</div>
 
                 </div>
 

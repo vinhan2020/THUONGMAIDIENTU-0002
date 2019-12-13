@@ -1,0 +1,22 @@
+.side{
+    top: 64px;
+    left: 0;
+    bottom: 64px;
+
+    width: 250px;
+    border: 1px solid black;
+    position: fixed;
+    
+    z-index: 500;
+    box-shadow: 1px 1px silver;
+}
+
+.main{
+
+    top: 64px;
+
+    padding-left: 270px;
+    /* border: 1px solid red; */
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,74 @@
+<div class="container-fluid">
+     
+
+        <div style=" border: 1px solid black; padding: 0px 15px;padding-top: 15px; margin-bottom: 10px;" *ngFor="let item of mang; let t = index">
+            <div class="row" style="padding-bottom: 15px;">
+                <!-- <div class="col-md-1 t ">
+                Mã : {{item.IdBill}}
+            </div> -->
+                <div class="col-md-4 t ">
+                    Ngày Đặt : <span style="color: red;">{{datepipe.transform(item.NgayXuat,'dd/MM/yyyy hh:mm')}}</span>
+                </div>
+                <div class="col-md-4 t ">
+                    Tình trạng : <span id="statusthu{{t}}">{{item.Status}}</span>
+                </div>
+                <div class="col-md-3 t ">
+                    Tổng tiền : <span style="color: red;"> {{decimalpipe.transform(item.TongTien,'.0')}}</span>
+                </div>
+                <div class="col-md-1 t">
+                    <a class="btn btn-light col-md-12" (click)="onDetailClick(t)">+</a>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="mangxuathien[t] ">
+                <div class="container-fluid">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Bill : <span style="color: red;padding-left: 5px;">
+                                        {{item.IdBill}}</span></th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Hãng</th>
+                                <th scope="col">Size / Số lượng</th>
+                                <th scope="col">Giá</th>
+                                <th>
+                                    <a class="btn btn-danger" (click)="onHuyDon(t)">X</a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let it of item.SanPham; let i=index">
+                                <td scope="row" style="width: 225px;">
+                                    <img src="{{it.Img[0]}}" style="height: 150px;">
+                                </td>
+                                <td style="width: 400px;">
+                                    {{it.Ten}}
+                                </td>
+                                <td>
+                                    {{it.Hang}}
+                                </td>
+                                <td style="width: 300px;">
+                                    <div class="row" *ngFor="let i of it.SizEvsGiAvsSolGvsTT; let i=index" style="padding-bottom: 5px;">
+                                        <span class="col-md-1">{{i[0]}}</span>
+                                        <span class="col-md-1">{{i[1]}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row" *ngFor="let i of it.SizEvsGiAvsSolGvsTT; let i=index"
+                                        style="padding-bottom: 5px;">
+                                        <span class="col-md-1">{{decimalpipe.transform(i[2],'.0')}}</span>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+     
+</div>

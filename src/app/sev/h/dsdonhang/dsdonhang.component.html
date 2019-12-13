@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-10" style="border: 1px solid white;">
+            
+            <div *ngFor="let item of listtk; let i=index" style="border: 1px solid red;padding: 15px 0;">
+                <div class="row" >
+
+                    <div class="col-md-2">
+                        Khách : <span>{{item.IdKhachHang}}</span>
+                    </div>
+                    <div class="col-md-2">
+                        Tên : <span>{{item.Ten}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        SĐT : <span>{{item.SDT}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        Địa chỉ : <span>{{item.DiaChi}}</span>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-primary col-md-12">DS đơn</a>
+                    </div>
+                    <div class="col-md-6">
+                        Đơn hàng cuối cùng : <span>{{datepipe.transform(ArayDate[i],'dd/MM/yyyy HH:mm')}}</span>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="container" style="padding: 0 30px;">
+                        as
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-2 col-2" style="border: 1px solid white;">
+            a
+        </div>
+    </div>
+</div>

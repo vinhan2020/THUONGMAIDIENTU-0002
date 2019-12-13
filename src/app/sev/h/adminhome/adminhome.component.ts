@@ -11,12 +11,9 @@ export class AdminhomeComponent implements OnInit {
 
   constructor(private admin : AdminService , private route : Router) { }
 
-  ngOnInit() {
-    if(this.admin.User.IsLogIn == false){
-      alert("Đăng nhập trước !")
-      this.route.navigate(['/Signin'])
-    }
-    
+  ngOnInit() 
+  {
+
   }
 
 }
