@@ -29,6 +29,12 @@ export class PaymentComponent implements OnInit {
 
   idtk: number;
 
+
+
+
+
+  
+
   ngOnInit() {
     var a = this.sanphamService.GioHangChange.subscribe((giohang: Dep[]) => {
       this.gioHang = giohang;
@@ -39,8 +45,7 @@ export class PaymentComponent implements OnInit {
       });
     });
 
-    var b = this.admin.ListKhachHangChange.subscribe(
-      (khachhang: Khachhang[]) => {
+    var b = this.admin.ListKhachHangChange.subscribe((khachhang: Khachhang[]) => {
         this.idtk = this.admin.getIDUser(this.admin.User.TK);
         // console.log(this.idtk);
         // console.log(this.currentuser);
@@ -62,16 +67,13 @@ export class PaymentComponent implements OnInit {
           } else {
             this.dc = this.currentuser.DiaChi;
           }
-        } catch (e) {
-          console.log;
-        }
-      }
+        } catch (e) {console.log;}}
     );
 
     try {
       this.idtk = this.admin.getIDUser(this.admin.User.TK);
-      console.log(this.idtk);
-      console.log(this.admin.IsLogedIn);
+      // console.log(this.idtk);
+      // console.log(this.admin.IsLogedIn);
       this.currentuser = this.admin.ListTK[this.idtk];
       this.ten = this.currentuser.Ten;
       if (this.currentuser.SDT == 0) {
@@ -84,7 +86,8 @@ export class PaymentComponent implements OnInit {
       } else {
         this.dc = this.currentuser.DiaChi;
       }
-    } catch (e) {}
+    } 
+    catch (e) {}
 
     this.gioHang = this.sanphamService.GetGioHang();
     this.gioHang.forEach(Dep => {
@@ -92,6 +95,8 @@ export class PaymentComponent implements OnInit {
         this.TongTien = this.TongTien + element[2];
       });
     });
+
+
   }
 
   pay() {
@@ -116,10 +121,10 @@ export class PaymentComponent implements OnInit {
 
         this.currentuser.Bill.push(this.sanphamService.BILL);
 
-        for (let index = 0; index < this.currentuser.Bill.length; index++) 
-        {
-          this.currentuser.Bill[index].IdBill = index
-        }
+        // for (let index = 0; index < this.currentuser.Bill.length; index++) 
+        // {
+        //   this.currentuser.Bill[index].IdBill = index
+        // }
 
         this.admin.updatetkbyid(this.currentuser, this.idtk);
         this.updb.UpListKhachHangToFB();
@@ -138,10 +143,10 @@ export class PaymentComponent implements OnInit {
           tentamp = this.admin.User.Ten;
         }
         var khach = new Khachhang(
-          this.admin.User.TK,
-          this.admin.User.MK,
+          null,
+          null,
           this.admin.User.Role,
-          this.admin.User.IsLogIn,
+          null,
           tentamp,
           this.sdt,
           this.dc

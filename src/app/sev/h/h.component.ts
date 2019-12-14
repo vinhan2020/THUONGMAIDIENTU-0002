@@ -14,18 +14,21 @@ export class HComponent implements OnInit {
     document.getElementById("NavigateBar").style.display='none'
 
     document.getElementById("foot").style.display = "none";
+    console.log(this.admin.User)
+    
+        if(localStorage.getItem("TK")=='admin' && localStorage.getItem("MK")=='admin')
+        {
 
-    if(localStorage.getItem("TK").includes('admin') && localStorage.getItem("MK").includes('admin'))
-    {
+        }
+        else
+        {
+          if (this.admin.User.Role != "Admin") 
+          {
+            alert("Không có quyền truy cập");
+            this.route.navigate([""]);
+          }
+        }
 
-    }
-    else
-    {
-      if (this.admin.User.Role != "Admin") {
-        alert("Không có quyền truy cập");
-        this.route.navigate([""]);
-      }
-    }
 
   }
 }

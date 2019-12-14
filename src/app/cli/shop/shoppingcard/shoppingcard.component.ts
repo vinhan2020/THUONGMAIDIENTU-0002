@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-shoppingcard",
@@ -9,15 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ["./shoppingcard.component.css"]
 })
 export class ShoppingcardComponent implements OnInit {
-  constructor(private sanphamService: SanphamService,
-              private router: Router) {};
-              
+  constructor(private sanphamService: SanphamService, private router: Router) {}
 
   gioHang: Dep[];
   listGia: number[] = [];
   GiaTemp: number = 0;
   Sub;
-id;
+  id;
   ngOnInit() {
     this.gioHang = this.sanphamService.GetGioHang();
 
@@ -33,7 +31,7 @@ id;
           this.listGia.push(this.GiaTemp);
           this.GiaTemp = 0;
         });
-       });
+      });
     }
 
     {
@@ -45,9 +43,8 @@ id;
 
         this.listGia.push(this.GiaTemp);
         this.GiaTemp = 0;
-        
       });
-     }
+    }
   }
 
   OnPlusClick(indexGioHang, indexOfDsSize) {
@@ -72,7 +69,7 @@ id;
           );
         } else {
           this.gioHang[indexGioHang].SizEvsGiAvsSolGvsTT[indexOfDsSize][1] = 1;
-          event.target.value =1 
+          event.target.value = 1;
         }
       }
       if (this.gioHang[indexGioHang].SizEvsGiAvsSolGvsTT.length == 0) {
@@ -85,15 +82,17 @@ id;
   onValueChange(event) {
     console.log(event.target.value);
   }
-  xoaSPGioHang(){
-    if(confirm("Are you want delete this product"))
-    { this.sanphamService.XoaSanPhamGioHang(this.id)
-      this.router.navigate(["/ShoppingCard"])
-
-    }
-    else{
-      this.router.navigate(["/ShoppingCard"])
-
+  xoaSPGioHang(id) {
+    // if (confirm("Do you want to delete this product")) {
+    //   this.sanphamService.XoaSanPhamGioHang(this.id);
+    //   this.router.navigate(["/ShoppingCard"]);
+    // } else {
+    //   this.router.navigate(["/ShoppingCard"]);
+    // }
+    console.log(id)
+    if(confirm())
+    {
+      this.sanphamService.XoaSanPhamGioHang(id)
     }
   }
 }

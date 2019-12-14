@@ -3,6 +3,7 @@ import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Dep } from "src/app/service-model/dep";
 import { AdminService } from "src/app/service-model/admin.service";
+import Swal from 'sweetalert2';
 @Component({
   selector: "app-detail",
   templateUrl: "./detail.component.html",
@@ -94,25 +95,33 @@ export class DetailComponent implements OnInit {
     
   }
   onDatHang() {
-    var y = new Dep(
-      this.sp.Ten,
-      this.sp.MoTa,
-      this.sp.Gia,
-      this.listSize,
-      this.sp.Img,
-      this.sp.Loai,
-      this.sp.Hang
-    );
-    y.ID = this.sp.ID
-    // console.log(y.SizEvsGiAvsSolGvsTT[0][1])
-    // console.log(this.sp.SizEvsGiAvsSolGvsTT)
-    //this.listSize=[]
-    this.sanphamService.AddtoGioHang(y);
-
-    // var t = this.sanphamService.GetGioHang();
-    // this.sanphamService.BILL.SanPham = t;
-    //alert("Success");
-
+    if(this.listSize.length == 0)
+    {
+      Swal.fire('pls chọn size','','error')
+    }
+    else {
+      var y = new Dep(
+        this.sp.Ten,
+        this.sp.MoTa,
+        this.sp.Gia,
+        this.listSize,
+        this.sp.Img,
+        this.sp.Loai,
+        this.sp.Hang
+      );
+      y.ID = this.sp.ID
+      // console.log(y.SizEvsGiAvsSolGvsTT[0][1])
+      // console.log(this.sp.SizEvsGiAvsSolGvsTT)
+      //this.listSize=[]
+      this.sanphamService.AddtoGioHang(y);
+      this.listSize = []
+  
+      Swal.fire({icon:'success',title:'Added',position:'top-right',timer:1000})
+      // var t = this.sanphamService.GetGioHang();
+      // this.sanphamService.BILL.SanPham = t;
+      //alert("Success");
+  
+    }
   }
 
   onHinhPhuChange(e) {}

@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
       this.adminsv.themTKvaoListTk(t);
       
       for (let index = 0; index < this.adminsv.ListTK.length; index++) {
-        this.adminsv.ListTK[index].IdKhachHang = index  
+        this.adminsv.ListTK[index].IdKhachHang = index
       }
       this.updb.UpListKhachHangToFB()
       

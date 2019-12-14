@@ -14,8 +14,8 @@ export class AdminService {
   ListKhachHangChange = new EventEmitter<Khachhang[]>();
 
   User: Khachhang = new Khachhang(
-    "",
-    "",
+    undefined,
+    undefined,
     "Guest",
     false,
     "Guest" + this.sodembatky,
@@ -24,8 +24,8 @@ export class AdminService {
   );
   
   Guest: Khachhang = new Khachhang(
-    "",
-    "",
+    undefined,
+    undefined,
     "Guest",
     false,
     "Guest" + this.sodembatky,

@@ -3,6 +3,7 @@ import { AdminService } from "./service-model/admin.service";
 import { UpfbService } from "./service-model/upfb.service";
 import { SanphamService } from './service-model/sanpham.service';
 import { Khachhang } from './service-model/khachhang';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: "app-root",
@@ -11,8 +12,8 @@ import { Khachhang } from './service-model/khachhang';
 })
 
 
-export class AppComponent implements OnInit,OnDestroy {
-  title = "ThuongMaiDienTu";
+export class AppComponent implements OnInit {
+  title = "Thương mại điện tử";
   taiKhoan;
   matKhau;
   a
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.a = this.admin.ListKhachHangChange.subscribe((list : Khachhang[])=>{
       this.CheckTKLocateOnClient();
+      //console.log(this.admin.User.TK)
     })
 
     this.updb.DownDepFromFBtoClient();
@@ -36,27 +38,20 @@ export class AppComponent implements OnInit,OnDestroy {
     //console.log(this.admin.ListTK)
   }
 
-  CheckTKLocateOnClient() 
+  CheckTKLocateOnClient()
   {
     this.taiKhoan = localStorage.getItem("TK");
     this.matKhau = localStorage.getItem("MK");
+    //console.log(this.taiKhoan)
     for (let index = 0; index < this.admin.ListTK.length; index++) 
     {
-      if (this.taiKhoan == this.admin.ListTK[index].TK && this.matKhau == this.admin.ListTK[index].MK) {
+      //console.log(this.admin.ListTK[index].TK)
+      if (this.taiKhoan == this.admin.ListTK[index].TK && this.matKhau == this.admin.ListTK[index].MK && !isNullOrUndefined(this.admin.ListTK[index].TK)) {
         this.admin.User = this.admin.ListTK[index];
         this.admin.ListTK[index].IsLogIn = true;
         this.admin.IsLogedIn = true
       }
     }
     this.updb.UpListKhachHangToFB()
-  }
-
-  @HostListener('beforeunload') beforeunload()
-  {
-    alert("asd")
-  }
-
-  ngOnDestroy(){
-    alert('asd')
   }
 }

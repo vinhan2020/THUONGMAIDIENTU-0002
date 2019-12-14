@@ -5,6 +5,16 @@
     <mat-toolbar color="primary"> DashBoard</mat-toolbar>
 
     <mat-nav-list>
+      <a mat-list-item routerLink='Home'>
+        Home
+        <a class="btn t"><i class="fas fa-home"></i></a>
+      </a>
+      <!-- <div *ngIf="isShow[2]" style="margin-left: 20px;  ">
+        <a mat-list-item>1 </a>
+        <a mat-list-item>2 </a>
+        <a mat-list-item>3 </a>
+      </div> -->
+
 
       <a mat-list-item>
         Sản phẩm :
@@ -29,7 +39,7 @@
 
 
       <a mat-list-item>
-        DashBoard
+        Khách hàng
         <a (click)="changeStatusShow(2)" class="btn t"><i class="fas fa-plus"></i></a>
       </a>
       <div *ngIf="isShow[2]" style="margin-left: 20px;  ">
