@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-shoppingcard",
@@ -82,17 +83,20 @@ export class ShoppingcardComponent implements OnInit {
   onValueChange(event) {
     console.log(event.target.value);
   }
+  
   xoaSPGioHang(id) {
-    // if (confirm("Do you want to delete this product")) {
-    //   this.sanphamService.XoaSanPhamGioHang(this.id);
-    //   this.router.navigate(["/ShoppingCard"]);
-    // } else {
-    //   this.router.navigate(["/ShoppingCard"]);
-    // }
-    console.log(id)
-    if(confirm())
-    {
-      this.sanphamService.XoaSanPhamGioHang(id)
-    }
+    Swal.fire({
+      title: "Delete ?",
+      icon: "question",
+      position: "center",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(res => {
+      if (res.value) {
+        this.sanphamService.XoaSanPhamGioHang(id);
+      }
+    });
   }
 }

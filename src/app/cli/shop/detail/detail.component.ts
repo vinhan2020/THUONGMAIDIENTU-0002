@@ -110,17 +110,11 @@ export class DetailComponent implements OnInit {
         this.sp.Hang
       );
       y.ID = this.sp.ID
-      // console.log(y.SizEvsGiAvsSolGvsTT[0][1])
-      // console.log(this.sp.SizEvsGiAvsSolGvsTT)
-      //this.listSize=[]
+
       this.sanphamService.AddtoGioHang(y);
       this.listSize = []
   
-      Swal.fire({icon:'success',title:'Added',position:'top-right',timer:1000})
-      // var t = this.sanphamService.GetGioHang();
-      // this.sanphamService.BILL.SanPham = t;
-      //alert("Success");
-  
+      Swal.fire({icon:'success',title:'Added',position:'top-right',timer:500})
     }
   }
 

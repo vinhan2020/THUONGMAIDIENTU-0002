@@ -33,10 +33,10 @@
                 </div>
                 <div>
                     <button class="btn btn-dark" routerLink="/ShoppingCard" style="margin-top: 7px"> CARD</button>
-                    <button style=" margin-top: 7px; float: right;" routerLink="/ShoppingCard/Payment/Paypal"
-                        routerLinkActive="router-link-active" (click)="pay()" class="btn btn-dark">Confirm And Pay</button>
 
-
+                    <div style=" margin-top: 7px; float: right;" id='paypal-checkout-btn'>
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,10 +57,12 @@
                                 <td scope="row"  >
                                     <img [src]="item.Img[0]" class="" height="120px">
                                 </td>
-                                <td  >
+                                <td>
                                     {{item.Ten}}
                                 </td>
-                                <td  >{{item.SizEvsGiAvsSolGvsTT[0][1]}}</td>
+                                <td>
+                                    {{item.SizEvsGiAvsSolGvsTT[0][1]}}
+                                </td>
                                 <td class="col-md-2"> {{item.Gia}}</td>
                             </tr>
                         </tbody>

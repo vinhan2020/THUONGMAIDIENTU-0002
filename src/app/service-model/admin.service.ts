@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Khachhang } from "./khachhang";
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: "root"
@@ -60,8 +61,8 @@ export class AdminService {
 
   getIDUser(tk: String) {
     for (let index = 0; index < this.ListTK.length; index++) {
-      if (tk == this.ListTK[index].TK) {
-        if (tk != "") {
+      if (tk == this.ListTK[index].TK && !isNullOrUndefined(this.ListTK[index].TK)) {
+        if (tk != "" ) {
           return index;
         }
       }

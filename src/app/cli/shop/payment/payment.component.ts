@@ -6,6 +6,9 @@ import { Khachhang } from "src/app/service-model/khachhang";
 import { UpfbService } from "src/app/service-model/upfb.service";
 import { Bill } from "src/app/service-model/bill";
 import Swal from "sweetalert2";
+
+declare let paypal: any;
+
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
@@ -29,51 +32,10 @@ export class PaymentComponent implements OnInit {
 
   idtk: number;
 
-
-
-
-
-  
-
   ngOnInit() {
-    var a = this.sanphamService.GioHangChange.subscribe((giohang: Dep[]) => {
-      this.gioHang = giohang;
-      this.gioHang.forEach(Dep => {
-        Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
-          this.TongTien = this.TongTien + element[2];
-        });
-      });
-    });
-
-    var b = this.admin.ListKhachHangChange.subscribe((khachhang: Khachhang[]) => {
-        this.idtk = this.admin.getIDUser(this.admin.User.TK);
-        // console.log(this.idtk);
-        // console.log(this.currentuser);
-
-        try {
-          this.currentuser = this.admin.ListTK[this.idtk];
-          this.ten = this.currentuser.Ten;
-          if (this.currentuser.SDT == 0) 
-          {
-            this.sdt = undefined;
-          } 
-          else 
-          {
-            this.sdt = this.currentuser.SDT;
-          }
-          if (this.currentuser.DiaChi == "") 
-          {
-            this.sdt = undefined;
-          } else {
-            this.dc = this.currentuser.DiaChi;
-          }
-        } catch (e) {console.log;}}
-    );
-
     try {
       this.idtk = this.admin.getIDUser(this.admin.User.TK);
-      // console.log(this.idtk);
-      // console.log(this.admin.IsLogedIn);
+
       this.currentuser = this.admin.ListTK[this.idtk];
       this.ten = this.currentuser.Ten;
       if (this.currentuser.SDT == 0) {
@@ -86,8 +48,7 @@ export class PaymentComponent implements OnInit {
       } else {
         this.dc = this.currentuser.DiaChi;
       }
-    } 
-    catch (e) {}
+    } catch (e) {}
 
     this.gioHang = this.sanphamService.GetGioHang();
     this.gioHang.forEach(Dep => {
@@ -95,33 +56,26 @@ export class PaymentComponent implements OnInit {
         this.TongTien = this.TongTien + element[2];
       });
     });
-
-
   }
 
   pay() {
-    if (this.sanphamService.GetGioHang().length == 0) 
-    {
+    if (this.sanphamService.GetGioHang().length == 0) {
       Swal.fire("Giỏ hàng đang trống", "chọn giày trước", "error");
-    } 
-    else 
-    {
-      if (this.admin.IsLogedIn)
-      {
+    } else {
+      if (this.admin.IsLogedIn) {
         this.sanphamService.BILL.NgayXuat = new Date();
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
-        this.sanphamService.BILL.Status="Đợi kiểm tra ..."
-        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
-        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000)
+        this.sanphamService.BILL.Status = "Đợi kiểm tra ...";
+        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang;
+        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000);
         //console.log(typeof this.currentuser.Bill)
-        if(this.currentuser.Bill == undefined)
-        {
-          this.currentuser.Bill = []
+        if (this.currentuser.Bill == undefined) {
+          this.currentuser.Bill = [];
         }
 
         this.currentuser.Bill.push(this.sanphamService.BILL);
 
-        // for (let index = 0; index < this.currentuser.Bill.length; index++) 
+        // for (let index = 0; index < this.currentuser.Bill.length; index++)
         // {
         //   this.currentuser.Bill[index].IdBill = index
         // }
@@ -131,15 +85,11 @@ export class PaymentComponent implements OnInit {
 
         this.sanphamService.BILL = new Bill([], new Date(), 0);
         this.sanphamService.UpdateGioHang([]);
-      }
-      else
-      {
+      } else {
         var tentamp;
         if (this.ten != this.admin.User.Ten) {
           tentamp = this.ten;
-        } 
-        else 
-        {
+        } else {
           tentamp = this.admin.User.Ten;
         }
         var khach = new Khachhang(
@@ -154,9 +104,9 @@ export class PaymentComponent implements OnInit {
 
         this.sanphamService.BILL.NgayXuat = new Date();
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
-        this.sanphamService.BILL.Status="Đợi kiểm tra ..."
-        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang
-        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000)
+        this.sanphamService.BILL.Status = "Đợi kiểm tra ...";
+        this.sanphamService.BILL.SanPham = this.sanphamService.GioHang;
+        this.sanphamService.BILL.IdBill = Math.floor(Math.random() * 1000000);
 
         // if(this.currentuser.Bill == undefined)
         // {
@@ -164,13 +114,73 @@ export class PaymentComponent implements OnInit {
         // }
         khach.Bill.push(this.sanphamService.BILL);
 
-
         this.admin.themTKvaoListTk(khach);
         this.updb.UpListKhachHangToFB();
 
         this.sanphamService.BILL = new Bill([], new Date(), 0);
         this.sanphamService.UpdateGioHang([]);
+
+        this.ten = undefined;
+        this.dc = undefined;
+        this.sdt = undefined;
       }
     }
+  }
+
+
+
+
+
+  
+  addscript: boolean = false;
+  paypalLoad = true;
+
+  paypalcongif = {
+    env: "sandbox",
+    client: {
+      sandbox:
+        "AQbCrDjtzaT2grb7Kmmywh50KKgHQfpgDx6oRT-1Ub6jya5IRBOjsYQaDnZyXsF4V2l7gknPvHj2STyi",
+      production: ""
+    },
+    commit: true,
+    payment: (data, action) => {
+      return action.payment.create({
+        payment: {
+          transactions: [
+            {
+              amount: {
+                total: this.TongTien / 20000,
+                currency: "USD"
+              }
+            }
+          ]
+        }
+      });
+    },
+    onAuthorize: (data, action) => {
+      return action.payment.execute().then(() => {
+        Swal.fire({ icon: "success", title: "Pay Completed", timer: 1000 });
+        this.pay();
+      });
+    }
+  };
+
+  ngAfterViewChecked(): void {
+    if (!this.addscript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalcongif, "#paypal-checkout-btn");
+        this.paypalLoad = false;
+      });
+    }
+  }
+
+  addPaypalScript() {
+    this.addscript = true;
+    return new Promise(resolve => {
+      let scriptetagelement = document.createElement("script");
+      scriptetagelement.src = "https://www.paypalobjects.com/api/checkout.js";
+      scriptetagelement.onload = resolve;
+      document.body.appendChild(scriptetagelement);
+    });
   }
 }

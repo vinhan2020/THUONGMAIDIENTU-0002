@@ -15,7 +15,6 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { NgxPayPalModule } from 'ngx-paypal';
 
 import { ChartsModule } from "ng2-charts";
 
@@ -107,7 +106,7 @@ const firebaseConfig = {
     AngularFireStorageModule,
     AngularFireAuthModule,
     //////////////////////////////
-    NgxPayPalModule,
+    
     BrowserAnimationsModule,  
     LayoutModule,
     MatToolbarModule,
