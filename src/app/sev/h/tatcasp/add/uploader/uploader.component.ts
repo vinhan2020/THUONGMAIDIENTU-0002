@@ -126,8 +126,11 @@ export class UploaderComponent implements OnInit {
     } else if (parseInt(e.target.value) == 0) {
       this.sizeSlgTT.splice(i, 1);
     } else {
-      alert("Nhập size trong khoảng 36 - 44");
-      e.target.value = this.sizegiaymacdinh;
+
+      Swal.fire({title:'Oops',text:'Size quá lớn hoặc size quá nhỏ',icon:'error'})
+      .then(()=>{e.target.value = this.sizegiaymacdinh;})
+
+      
     }
     //console.log(this.sizeSlgTT);
   }
@@ -155,31 +158,37 @@ export class UploaderComponent implements OnInit {
     // this.isAdding=true
     this.nutthem++;
     this.nutsua = 0;
-    if (this.ListURL.length == this.filehinhtoAddFB.length) {
-      if (this.hang == "Khác") {
-        this.hang = this.hangtemp;
-      }
-      if (this.loai == "Khác") {
-        this.loai = this.loaitemp;
-      }
-      var temp = new Dep(
-        this.ten,
-        this.mota,
-        this.gia,
-        this.sizeSlgTT,
-        this.adservice.StringUrl,
-        this.loai,
-        this.hang
-      );
-
-      this.spservice.AddSptoList(temp);
-      this.updb.UpListDepToFB();
-
-      //  console.log(temp);
-      Swal.fire("Thêm thành công", "", "success");
-    } else {
-      for (let i = 0; i < this.filehinhtoAddFB.length; i++) {
-        this.files.push(this.filehinhtoAddFB[i]);
+    if(isNullOrUndefined(this.filehinhtoAddFB)){
+      Swal.fire({title:'Oops',icon:'error',text:'Chọn hình ...'})
+    }
+    else
+    {
+      if (this.ListURL.length == this.filehinhtoAddFB.length) {
+        if (this.hang == "Khác") {
+          this.hang = this.hangtemp;
+        }
+        if (this.loai == "Khác") {
+          this.loai = this.loaitemp;
+        }
+        var temp = new Dep(
+          this.ten,
+          this.mota,
+          this.gia,
+          this.sizeSlgTT,
+          this.adservice.StringUrl,
+          this.loai,
+          this.hang
+        );
+  
+        this.spservice.AddSptoList(temp);
+        this.updb.UpListDepToFB();
+  
+        //  console.log(temp);
+        Swal.fire("Thêm thành công", "", "success");
+      } else {
+        for (let i = 0; i < this.filehinhtoAddFB.length; i++) {
+          this.files.push(this.filehinhtoAddFB[i]);
+        }
       }
     }
   }
@@ -246,7 +255,7 @@ export class UploaderComponent implements OnInit {
   }
 
   onDrop(files: FileList) {
-    console.log(files[0]);
+    //console.log(files[0]);
     this.filehinhtoAddFB = files;
     var array = [];
     this.filehinhtemp = [];

@@ -6,6 +6,7 @@ import { Khachhang } from "src/app/service-model/khachhang";
 import { UpfbService } from "src/app/service-model/upfb.service";
 import { Bill } from "src/app/service-model/bill";
 import Swal from "sweetalert2";
+import { ActivatedRoute, Router } from "@angular/router";
 
 declare let paypal: any;
 
@@ -18,7 +19,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private sanphamService: SanphamService,
     public admin: AdminService,
-    private updb: UpfbService
+    private updb: UpfbService,
+    private route: Router
   ) {}
 
   gioHang: Dep[] = [];
@@ -26,36 +28,42 @@ export class PaymentComponent implements OnInit {
   TongTien = 0;
   currentuser: Khachhang;
 
-  ten = "";
+  ten;
   sdt;
   dc;
 
   idtk: number;
 
   ngOnInit() {
-    try {
-      this.idtk = this.admin.getIDUser(this.admin.User.TK);
-
-      this.currentuser = this.admin.ListTK[this.idtk];
-      this.ten = this.currentuser.Ten;
-      if (this.currentuser.SDT == 0) {
-        this.sdt = undefined;
-      } else {
-        this.sdt = this.currentuser.SDT;
-      }
-      if (this.currentuser.DiaChi == "") {
-        this.sdt = undefined;
-      } else {
-        this.dc = this.currentuser.DiaChi;
-      }
-    } catch (e) {}
-
-    this.gioHang = this.sanphamService.GetGioHang();
-    this.gioHang.forEach(Dep => {
-      Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
-        this.TongTien = this.TongTien + element[2];
+    if (this.sanphamService.GioHang.length == 0) {
+      Swal.fire("Opps", "Giỏ hàng trống", "warning").then(() => {
+        this.route.navigate(["/Shop"]);
       });
-    });
+    } else {
+      try {
+        this.idtk = this.admin.getIDUser(this.admin.User.TK);
+
+        this.currentuser = this.admin.ListTK[this.idtk];
+        this.ten = this.currentuser.Ten;
+        if (this.currentuser.SDT == 0) {
+          this.sdt = undefined;
+        } else {
+          this.sdt = this.currentuser.SDT;
+        }
+        if (this.currentuser.DiaChi == "") {
+          this.sdt = undefined;
+        } else {
+          this.dc = this.currentuser.DiaChi;
+        }
+      } catch (e) {}
+
+      this.gioHang = this.sanphamService.GetGioHang();
+      this.gioHang.forEach(Dep => {
+        Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
+          this.TongTien = this.TongTien + element[2];
+        });
+      });
+    }
   }
 
   pay() {
@@ -127,11 +135,15 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  ngAfterViewChecked() {
+    if (!this.addscript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalcongif, "#paypal-checkout-btn");
+        this.paypalLoad = false;
+      });
+    }
+  }
 
-
-
-
-  
   addscript: boolean = false;
   paypalLoad = true;
 
@@ -164,15 +176,6 @@ export class PaymentComponent implements OnInit {
       });
     }
   };
-
-  ngAfterViewChecked(): void {
-    if (!this.addscript) {
-      this.addPaypalScript().then(() => {
-        paypal.Button.render(this.paypalcongif, "#paypal-checkout-btn");
-        this.paypalLoad = false;
-      });
-    }
-  }
 
   addPaypalScript() {
     this.addscript = true;

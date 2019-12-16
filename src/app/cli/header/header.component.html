@@ -50,10 +50,9 @@
         </a>
 
         <div class="dropdown-content">
-          <a *ngIf="admin.User.IsLogIn != true" name='signin' style="cursor: pointer" routerLink='Signin'>SignIn</a>
+          <a *ngIf="admin.User.IsLogIn != true" name='signin' id="signin" style="cursor: pointer;width: 100%;" routerLink='Signin'>SignIn</a>
           <a *ngIf="admin.User.IsLogIn == true" routerLink="/UserHomePage" style="cursor: pointer">User</a>
-          <a *ngIf="admin.User.IsLogIn == true && admin.User.Role =='Admin'" routerLink='Admin' (click)="onAdminClick()"
-            style="cursor: pointer">Admin</a>
+          <a *ngIf="admin.User.IsLogIn == true && admin.User.Role =='Admin'" routerLink='Admin' (click)="onAdminClick()" style="cursor: pointer">Admin</a>
           <a *ngIf="admin.User.IsLogIn == true" style="cursor: pointer" name='logout' class="Logout" (click)="onLogOut()">Log out</a>
         </div>
       </li>
