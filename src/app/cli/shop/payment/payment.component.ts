@@ -35,17 +35,21 @@ export class PaymentComponent implements OnInit {
   idtk: number;
 
   ngOnInit() {
-    if (this.sanphamService.GioHang.length == 0) {
+    if (this.sanphamService.GioHang.length == 0) 
+    {
       Swal.fire("Opps", "Giỏ hàng trống", "warning").then(() => {
         this.route.navigate(["/Shop"]);
       });
-    } else {
+    } 
+    else 
+    {
       try {
+
         this.idtk = this.admin.getIDUser(this.admin.User.TK);
 
         this.currentuser = this.admin.ListTK[this.idtk];
         this.ten = this.currentuser.Ten;
-        if (this.currentuser.SDT == 0) {
+        if (this.currentuser.SDT == "0") {
           this.sdt = undefined;
         } else {
           this.sdt = this.currentuser.SDT;
@@ -55,22 +59,33 @@ export class PaymentComponent implements OnInit {
         } else {
           this.dc = this.currentuser.DiaChi;
         }
-      } catch (e) {}
 
-      this.gioHang = this.sanphamService.GetGioHang();
-      this.gioHang.forEach(Dep => {
-        Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
-          this.TongTien = this.TongTien + element[2];
+        this.gioHang = this.sanphamService.GetGioHang();
+        this.gioHang.forEach(Dep => {
+          Dep.SizEvsGiAvsSolGvsTT.forEach(element => {
+            this.TongTien = this.TongTien + element[2];
+          });
         });
-      });
+
+      } 
+      catch (e)
+      {
+
+      }
+
     }
   }
 
   pay() {
-    if (this.sanphamService.GetGioHang().length == 0) {
+    if (this.sanphamService.GetGioHang().length == 0) 
+    {
       Swal.fire("Giỏ hàng đang trống", "chọn giày trước", "error");
-    } else {
-      if (this.admin.IsLogedIn) {
+    } 
+    else 
+    {
+
+      if (this.admin.IsLogedIn)
+      {
         this.sanphamService.BILL.NgayXuat = new Date();
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
         this.sanphamService.BILL.Status = "Đợi kiểm tra ...";
@@ -93,11 +108,16 @@ export class PaymentComponent implements OnInit {
 
         this.sanphamService.BILL = new Bill([], new Date(), 0);
         this.sanphamService.UpdateGioHang([]);
-      } else {
+      } 
+      else
+      {
         var tentamp;
-        if (this.ten != this.admin.User.Ten) {
+        if (this.ten != this.admin.User.Ten) 
+        {
           tentamp = this.ten;
-        } else {
+        } 
+        else 
+        {
           tentamp = this.admin.User.Ten;
         }
         var khach = new Khachhang(
@@ -109,6 +129,8 @@ export class PaymentComponent implements OnInit {
           this.sdt,
           this.dc
         );
+        this.updb.DownListTKFromFB()
+        khach.IdKhachHang = this.admin.ListTK.length
 
         this.sanphamService.BILL.NgayXuat = new Date();
         this.sanphamService.BILL.TongTien = this.TongTien + 20000;
@@ -120,6 +142,7 @@ export class PaymentComponent implements OnInit {
         // {
         //   this.currentuser.Bill = []
         // }
+        
         khach.Bill.push(this.sanphamService.BILL);
 
         this.admin.themTKvaoListTk(khach);
@@ -169,10 +192,14 @@ export class PaymentComponent implements OnInit {
         }
       });
     },
-    onAuthorize: (data, action) => {
+    onAuthorize: (data, action) => 
+    {
       return action.payment.execute().then(() => {
-        Swal.fire({ icon: "success", title: "Pay Completed", timer: 1000 });
-        this.pay();
+        Swal.fire({ icon: "success", title: "Pay Completed", timer: 1000 })
+        .then(()=>
+        { 
+          this.pay() 
+        })
       });
     }
   };

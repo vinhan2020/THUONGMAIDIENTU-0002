@@ -8,7 +8,7 @@ export class Khachhang {
 
   IdKhachHang: number;
   Ten: string;
-  SDT: number;
+  SDT: String;
   DiaChi: string;
   Bill: Bill[];
   OrderList: Bill[];
@@ -19,7 +19,7 @@ export class Khachhang {
     role: string,
     islogin: boolean,
     ten: string,
-    sdt: number,
+    sdt: String,
     dc: string
   ) {
     this.TK = taikhoan;

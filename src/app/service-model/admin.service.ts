@@ -20,7 +20,7 @@ export class AdminService {
     "Guest",
     false,
     "Guest" + this.sodembatky,
-    0,
+    "0",
     ""
   );
   
@@ -30,7 +30,7 @@ export class AdminService {
     "Guest",
     false,
     "Guest" + this.sodembatky,
-    0,
+    "0",
     ""
   );
 
