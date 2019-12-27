@@ -1,5 +1,5 @@
 
-<div class="container" *ngIf="atShoptab">
+<!-- <div class="container" *ngIf="atShoptab">
     <div class="row">
        
         <div class="col-md-6">
@@ -15,7 +15,7 @@
         </div>
         
     </div>
-</div>
+</div> -->
 
 
 
@@ -40,7 +40,7 @@
                         </ul>
                         <div class="product-content">
                             <h3 class="title"><a  >{{ item.Ten}}</a></h3>
-                            <div class="price">{{item.Gia}}
+                            <div class="price">{{depipe.transform(item.Gia,'') }}
                              </div>
                          </div>
                     </div>

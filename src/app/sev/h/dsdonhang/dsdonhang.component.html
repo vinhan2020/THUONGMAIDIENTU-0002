@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 col-10"  >
-            
-            <div *ngFor="let item of listtk; let i=index" >
+        <div class="col-md-10 col-10">
+
+            <div *ngFor="let item of listtk; let i=index">
 
                 <div style="margin: 15px 0;border: 1px solid rgb(117, 114, 114);padding: 15px 15px;">
 
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-md-2">
                             Khách : <span>{{item.IdKhachHang}}</span>
                         </div>
@@ -20,10 +20,11 @@
                             Địa chỉ : <span>{{item.DiaChi}}</span>
                         </div>
                         <div class="col-md-1">
-                            <a class="btn btn-light" style="width: 100%;" (click)="showInfor(i)"><i class="fas fa-plus" style="color: black;"></i></a>
+                            <a class="btn btn-light" style="width: 100%;" (click)="showInfor(i)"><i class="fas fa-plus"
+                                    style="color: black;"></i></a>
                         </div>
                         <div class="col-md-4">
-                            Đơn hàng cuối cùng : 
+                            Đơn hàng cuối cùng :
                             <ng-container *ngIf="ArayDate[i] != newdate; else elseTemplate">
                                 <span>
                                     {{datepipe.transform(ArayDate[i],'dd/MM/yyyy   HH:mm:ss')}}
@@ -34,21 +35,21 @@
                                     Không có đơn nào !!!
                                 </span>
                             </ng-template>
-                            
+
                         </div>
                         <div class="col-md-4">
                             Tình trạng :
-                             <ng-container *ngIf="ArrayTinhTrang[i] == stt1; else elseTemplate" >
-                                <span style="color: orangered;"> 
+                            <ng-container *ngIf="ArrayTinhTrang[i] == stt1; else elseTemplate">
+                                <span style="color: orangered;">
                                     {{ArrayTinhTrang[i]}}
                                     <i class="fas fa-exclamation"></i>
                                 </span>
-                                
+
                             </ng-container>
                             <ng-template #elseTemplate>
                                 <ng-container *ngIf="ArrayTinhTrang[i] == stt2; else elseTemplate1">
-            
-                                    <span style="color: orangered;"> 
+
+                                    <span style="color: orangered;">
                                         {{ArrayTinhTrang[i]}}
                                         <i class="fas fa-minus-circle"></i>
                                     </span>
@@ -56,45 +57,47 @@
                                 </ng-container>
                                 <ng-template #elseTemplate1>
                                     <ng-container *ngIf="ArrayTinhTrang[i] == stt3; else elseTemplate">
-                                        <span style="color: greenyellow;"> 
+                                        <span style="color: greenyellow;">
                                             {{ArrayTinhTrang[i]}}
                                             <i class="fas fa-truck"></i>
                                         </span>
                                     </ng-container>
                                     <ng-template #elseTemplate>
                                         <ng-container *ngIf="ArrayTinhTrang[i] == stt4; else elseTemplate">
-                                            <span style="color: red;"> 
+                                            <span style="color: red;">
                                                 {{ArrayTinhTrang[i]}}
                                                 <i class="fas fa-minus-circle"></i>
                                             </span>
                                         </ng-container>
                                         <ng-template #elseTemplate>
-                                            <span> 
+                                            <span>
                                                 Chưa có đơn dặt hàng nào !!!
                                             </span>
                                         </ng-template>
                                     </ng-template>
                                 </ng-template>
                             </ng-template>
-                             
+
                         </div>
 
                         <div class="col-md-4">
                             <div class="row">
-                                <label style="font-size: 16px;text-align: center;" class="col-md-12"> Số đơn  </label>
+                                <label style="font-size: 16px;text-align: center;" class="col-md-12"> Số đơn </label>
                             </div>
                             <div class="row">
-                                <span class="col-md-8" style="color: orangered;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
-                                    chưa kiểm tra 
-                                </span> 
-                                
-                                <span class="col-md-4" style="color: orangered; font-weight: bold;font-size: 22px;"> 
-                                    {{ArraySodDonChuaKLT[i]}} 
-                                </span> 
+                                <span class="col-md-8"
+                                    style="color: orangered;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
+                                    chưa kiểm tra
+                                </span>
+
+                                <span class="col-md-4" style="color: orangered; font-weight: bold;font-size: 22px;">
+                                    {{ArraySodDonChuaKLT[i]}}
+                                </span>
                             </div>
 
                             <div class="row">
-                                <span class="col-md-8" style="color: red;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
+                                <span class="col-md-8"
+                                    style="color: red;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
                                     <span>
                                         Đang đợi huỷ
                                     </span>
@@ -103,29 +106,30 @@
                                         Đã huỷ
                                     </span>
                                 </span>
-                                <span class="col-md-4" style="color: red; font-weight: bold;font-size: 22px;"> 
+                                <span class="col-md-4" style="color: red; font-weight: bold;font-size: 22px;">
                                     <span>
-                                        {{ArraySoDonDangHuy[i]}} 
+                                        {{ArraySoDonDangHuy[i]}}
                                     </span>
                                     /
                                     <span>
-                                        {{ArrayDaHuyDon[i]}} 
+                                        {{ArrayDaHuyDon[i]}}
                                     </span>
                                 </span>
-                                
+
                             </div>
                             <div class="row">
-                                <span class="col-md-8" style="color: greenyellow;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
+                                <span class="col-md-8"
+                                    style="color: greenyellow;text-transform: uppercase; margin-top: auto;margin-bottom: auto;">
                                     Đã giao hàng
                                 </span>
-                                <span class="col-md-4" style="color: greenyellow; font-weight: bold;font-size: 22px;"> 
-                                    {{ArrayDaThanhToan[i]}} 
+                                <span class="col-md-4" style="color: greenyellow; font-weight: bold;font-size: 22px;">
+                                    {{ArrayDaThanhToan[i]}}
                                 </span>
                             </div>
                         </div>
-    
+
                     </div>
-    
+
                     <div class="row" *ngIf="showArray[i]">
                         <div class="container-fluid" style="padding: 15px 15px;">
 
@@ -140,32 +144,32 @@
                                         <th scope="col">Tổng tiền</th>
 
                                         <th scope="col">
-                                            Tình trạng Bill : 
+                                            Tình trạng Bill :
                                             <ng-container *ngIf="it.Status == stt1; else tinhtrangdonhang1">
-                                                <div style="color: orangered;"> 
+                                                <div style="color: orangered;">
                                                     {{it.Status}} <span> <i class="fas fa-exclamation"></i> </span>
                                                 </div>
                                             </ng-container>
                                             <ng-template #tinhtrangdonhang1>
                                                 <ng-container *ngIf="it.Status == stt2; else tinhtrangdonhang2">
-                                                    <div style="color: red;"> 
+                                                    <div style="color: red;">
                                                         {{it.Status}} <span> <i class="fa fa-ban"></i> </span>
                                                     </div>
                                                 </ng-container>
                                                 <ng-template #tinhtrangdonhang2>
                                                     <ng-container *ngIf="it.Status == stt3; else tinhtrangdonhang3">
-                                                        <div style="color: yellowgreen;"> 
+                                                        <div style="color: yellowgreen;">
                                                             {{it.Status}} <span> <i class="fas fa-truck"></i> </span>
                                                         </div>
                                                     </ng-container>
                                                     <ng-template #tinhtrangdonhang3>
-                                                        <div style="color: red;"> 
+                                                        <div style="color: red;">
                                                             {{it.Status}} <span> <i class="fa fa-ban"></i> </span>
                                                         </div>
                                                     </ng-template>
                                                 </ng-template>
                                             </ng-template>
-                                            
+
                                         </th>
 
                                     </tr>
@@ -177,21 +181,21 @@
                                         </th>
                                         <td>{{sanpham.Ten}}</td>
                                         <td>
-                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index"  >
+                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index">
                                                 {{itemn[0]}}
                                             </div>
                                         </td>
                                         <td>
-                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index"  >
+                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index">
                                                 {{itemn[1]}}
                                             </div>
                                         </td>
                                         <td>
-                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index"  >
+                                            <div *ngFor="let itemn of sanpham.SizEvsGiAvsSolGvsTT; let i=index">
                                                 {{depipe.transform(itemn[2],'')}}
                                             </div>
                                         </td>
-                                        
+
                                         <td>
                                             <div style="height: 38px;">
                                                 {{depipe.transform(it.TongTien,'')}}
@@ -208,31 +212,34 @@
                                             </div> -->
 
                                         </td>
-                                        
+
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td>
                                             <ng-container *ngIf="it.Status == stt1; else nutAccept1">
-                                                <a class="btn btn-success" (click)="ActionWhenClick('AcceptedBill', it.IdBill,item.IdKhachHang)" style="width: 100%;">
+                                                <a class="btn btn-success"
+                                                    (click)="ActionWhenClick('AcceptedBill', it.IdBill,item.IdKhachHang)"
+                                                    style="width: 100%;">
                                                     <i class="fa fa-check"></i>
                                                 </a>
                                             </ng-container>
                                             <ng-template #nutAccept1>
                                                 <ng-container *ngIf="it.Status == stt2; else nutAccept2">
-                                                    <a class="btn btn-danger" style="width: 100%;" (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)" >
+                                                    <a class="btn btn-danger" style="width: 100%;"
+                                                        (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)">
                                                         <i class="fa fa-check"></i>
                                                     </a>
                                                 </ng-container>
                                                 <ng-template #nutAccept2>
                                                     <ng-container *ngIf="it.Status == stt3; else nutAccept3">
-                                                        <button class="btn btn-success" style="width: 100%;" disabled >
-                                                            <i class="fa fa-check" ></i>
+                                                        <button class="btn btn-success" style="width: 100%;" disabled>
+                                                            <i class="fa fa-check"></i>
                                                         </button>
                                                     </ng-container>
                                                     <ng-template #nutAccept3>
-                                                        <button class="btn btn-danger" style="width: 100%;" disabled >
-                                                            <i class="fa fa-ban" ></i>
+                                                        <button class="btn btn-danger" style="width: 100%;" disabled>
+                                                            <i class="fa fa-ban"></i>
                                                         </button>
                                                     </ng-template>
                                                 </ng-template>
@@ -241,31 +248,33 @@
 
                                         <td colspan="3">
                                             <ng-container *ngIf="it.Status == stt1; else elseTemplate1">
-                                                <button class="btn btn-danger" style="width: 100%;" (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)">
+                                                <button class="btn btn-danger" style="width: 100%;"
+                                                    (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)">
                                                     <i class="fa fa-ban"></i>
                                                 </button>
                                             </ng-container>
                                             <ng-template #elseTemplate1>
                                                 <ng-container *ngIf="it.Status == stt2; else elseTemplate2">
-                                                    <button class="btn btn-danger" style="width: 100%;" (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)">
+                                                    <button class="btn btn-danger" style="width: 100%;"
+                                                        (click)="ActionWhenClick('DeletedBill', it.IdBill,item.IdKhachHang)">
                                                         <i class="fa fa-ban"></i>
                                                     </button>
                                                 </ng-container>
                                                 <ng-template #elseTemplate2>
-                                                    
+
                                                 </ng-template>
-                                                
+
                                             </ng-template>
-                                            
 
 
 
-                                            
+
+
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
-                              </table>
+                            </table>
 
                         </div>
                     </div>
@@ -276,7 +285,7 @@
 
 
             </div>
-            
+
         </div>
 
 

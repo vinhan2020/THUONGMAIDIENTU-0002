@@ -12,6 +12,7 @@ export class AdminService {
   IsLogedIn = false;
   Dem: number = 0;
   sodembatky = Math.floor(Math.random() * 100000 + 1);
+  
   ListKhachHangChange = new EventEmitter<Khachhang[]>();
 
   User: Khachhang = new Khachhang(

@@ -3,6 +3,7 @@ import { SanphamService } from "src/app/service-model/sanpham.service";
 import { Dep } from "src/app/service-model/dep";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: "app-shoppingcard",
@@ -10,7 +11,7 @@ import Swal from "sweetalert2";
   styleUrls: ["./shoppingcard.component.css"]
 })
 export class ShoppingcardComponent implements OnInit {
-  constructor(private sanphamService: SanphamService, private router: Router) {}
+  constructor(private sanphamService: SanphamService, private router: Router,public depipe : DecimalPipe) {}
 
   gioHang: Dep[];
   listGia: number[] = [];

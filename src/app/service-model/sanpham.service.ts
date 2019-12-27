@@ -108,10 +108,6 @@ export class SanphamService {
     this.GioHangChange.emit(this.GioHang.slice());
   }
 
-  Sum2So(a, b) {
-    let c;
-    return (c = a + b);
-  }
 
   UpdateGioHang(giohang: Dep[]) {
     this.GioHang = giohang;

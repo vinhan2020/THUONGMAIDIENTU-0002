@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-md-5 col-6">
                         <input type="number" class="form-control" placeholder="Phone" required [(ngModel)]="sdt">
-                        
+                        {{sdt}}
                     </div>
                 </div>
                 <input type="text" class="form-control" placeholder="Adress" [value]="admin.User.DiaChi" [(ngModel)]="dc">
@@ -63,7 +63,7 @@
                                 <td>
                                     {{item.SizEvsGiAvsSolGvsTT[0][1]}}
                                 </td>
-                                <td class="col-md-2"> {{item.Gia}}</td>
+                                <td class="col-md-2"> {{depipe.transform(item.Gia,'')}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,7 +90,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7 col-7">Tổng Tiền:</div>
-                    <div class="col-md-5 col-5">{{TongTien}}</div>
+                    <div class="col-md-5 col-5">{{depipe.transform(TongTien,'')}}</div>
 
                 </div>
 

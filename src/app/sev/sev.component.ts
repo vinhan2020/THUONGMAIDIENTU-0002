@@ -45,13 +45,13 @@ export class SevComponent implements OnInit {
 
   onLogInClick() {
     this.admin.ListTK.forEach(element => {
-      if (this.TK == element.TK && this.MK == element.MK) {
+      if (this.TK == element.TK && this.MK == element.MK) 
+      {
         this.admin.Dem++;
         element.IsLogIn = true;
         this.admin.User = element;
-        //console.log(this.admin.User);
-        //Swal.fire("","","success")
-       // if (this.admin.User.Role == "Guest") {
+        this.admin.IsLogedIn = true
+
           Swal.fire({
             title: "Save ?",
             text: "",
